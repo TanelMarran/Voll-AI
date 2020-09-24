@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 [RequireComponent (typeof (BoxCollider2D))]
 public class Controller2D : MonoBehaviour
 {
+    public LayerMask CollisionMask;
+    
     private const float SkinWidth = .015f;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
@@ -19,17 +24,7 @@ public class Controller2D : MonoBehaviour
     private void Start()
     {
         _collider = GetComponent<BoxCollider2D>();
-    }
-
-    private void Update()
-    {
-        UpdateRaycastOrigins();
         CalculateRaySpacing();
-
-        for (var i = 0; i < verticalRayCount; i++)
-        {
-            Debug.DrawRay(_rayCastOrigins.BottomLeft + Vector2.right * (i * _verticalRaySpacing), Vector3.down * 2, Color.green);
-        }
     }
 
     private void UpdateRaycastOrigins()
@@ -60,5 +55,60 @@ public class Controller2D : MonoBehaviour
     {
         public Vector2 TopLeft, TopRight;
         public Vector2 BottomLeft, BottomRight;
+    }
+    
+    void HorizontalCollisions(ref Vector3 velocity)
+    {
+        float directionX = Mathf.Sign(velocity.x);
+        float rayLength = Mathf.Abs(velocity.x) + SkinWidth;
+        
+        for (int i = 0; i < horizontalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionX == -1 ? _rayCastOrigins.BottomLeft : _rayCastOrigins.BottomRight);
+            rayOrigin += Vector2.up * (i * _horizontalRaySpacing);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, CollisionMask);
+
+            if (hit)
+            {
+                velocity.x = (hit.distance - SkinWidth) * directionX;
+                rayLength = hit.distance;
+            }
+        }
+    }
+
+    void VerticalCollisions(ref Vector3 velocity)
+    {
+        float directionY = Mathf.Sign(velocity.y);
+        float rayLength = Mathf.Abs(velocity.y) + SkinWidth;
+        
+        for (int i = 0; i < verticalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionY == -1 ? _rayCastOrigins.BottomLeft : _rayCastOrigins.TopLeft);
+            rayOrigin += Vector2.right * (i * _verticalRaySpacing + velocity.x);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, CollisionMask);
+
+            if (hit)
+            {
+                velocity.y = (hit.distance - SkinWidth) * directionY;
+                rayLength = hit.distance;
+            }
+        }
+    }
+
+    public void Move(Vector3 velocity)
+    {
+        UpdateRaycastOrigins();
+
+        if (velocity.x != 0)
+        {
+            HorizontalCollisions(ref velocity);
+        }
+
+        if (velocity.y != 0)
+        {
+            VerticalCollisions(ref velocity);
+        }
+
+        transform.Translate(velocity);
     }
 }
