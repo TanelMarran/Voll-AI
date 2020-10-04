@@ -14,6 +14,7 @@ public class Controller2D : MonoBehaviour
     private const float SkinWidth = .015f;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
+    public CollisionInfo Collisions;
 
     private RayCastOrigins _rayCastOrigins;
     
@@ -72,6 +73,8 @@ public class Controller2D : MonoBehaviour
             {
                 velocity.x = (hit.distance - SkinWidth) * directionX;
                 rayLength = hit.distance;
+                Collisions.left = directionX == -1;
+                Collisions.right = directionX == 1;
             }
         }
     }
@@ -91,12 +94,15 @@ public class Controller2D : MonoBehaviour
             {
                 velocity.y = (hit.distance - SkinWidth) * directionY;
                 rayLength = hit.distance;
+                Collisions.below = directionY == -1;
+                Collisions.above = directionY == 1;
             }
         }
     }
 
     public void Move(Vector3 velocity)
     {
+        Collisions.Reset();
         UpdateRaycastOrigins();
 
         if (velocity.x != 0)
@@ -110,5 +116,17 @@ public class Controller2D : MonoBehaviour
         }
 
         transform.Translate(velocity);
+    }
+
+    public struct CollisionInfo
+    {
+        public bool above, below;
+        public bool left, right;
+
+        public void Reset()
+        {
+            above = below = false;
+            left = right = false;
+        }
     }
 }

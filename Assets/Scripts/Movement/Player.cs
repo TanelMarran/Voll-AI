@@ -1,30 +1,39 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Movement;
+using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Controller2D), typeof(InputController))]
 public class Player : MonoBehaviour
 {
-    public float MovementSpeed = 5;
+    [FormerlySerializedAs("MovementSpeed")] public float movementSpeed = 5;
+    [FormerlySerializedAs("JumpPower")] public float jumpPower = 20;
     
-    private float gravity = -20;
-    private Vector3 velocity;
+    public StateMachine<Player> State;
+    public PlayerMove PlayerMove;
+    
+    public float gravity = -40;
+    public Vector3 velocity;
 
-    private Controller2D _controller2D;
-    private InputController _inputController;
+    [FormerlySerializedAs("_controller2D"), HideInInspector] public Controller2D controller2D;
+    [FormerlySerializedAs("_inputController"), HideInInspector] public InputController inputController;
 
     private void Start()
     {
-        _controller2D = GetComponent<Controller2D>();
-        _inputController = GetComponent<InputController>();
+        controller2D = GetComponent<Controller2D>();
+        inputController = GetComponent<InputController>();
+        State = new StateMachine<Player>();
+        InitializeStates();
+    }
+
+    private void InitializeStates()
+    {
+        PlayerMove = new PlayerMove(this);
+        State.SetState(PlayerMove);
     }
 
     private void FixedUpdate()
     {
-        velocity.x = _inputController.movementInput.x * MovementSpeed;
-        
-        velocity.y += gravity * Time.deltaTime;
-        _controller2D.Move(velocity * Time.deltaTime);
+        State.FixedUpdate();
     }
 }
