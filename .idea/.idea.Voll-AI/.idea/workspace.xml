@@ -20,20 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0ccda5e-ac0e-418a-a015-4ac870074d12" name="Default Changelist" comment="implements state machine classes for player logic">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/IState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/IState.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerMove.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerMove.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Editor/PlayerEditor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Editor/PlayerEditor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BallDefault.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BallDefault.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Input.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Input/InputHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Input/InputHandler.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerAir.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerAir.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerDash.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerDash.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/Controller2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Movement/Controller2D.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/InputController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Movement/InputController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/InputController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/InputController.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Movement/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/IState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/IState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerGround.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerMove.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerGround.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,17 +57,24 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Movement/Controller2D.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Movement/InputController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Movement/heh.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Movement/StateMachine.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Movement/State.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/State.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/MoveState.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Movement/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerMove.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Movement/InputController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Input/InputHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Editor/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Movement/Controller2D.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerAir.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerDash.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/IState.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BallDefault.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Movement/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerGround.cs" />
       </list>
     </option>
   </component>
@@ -103,7 +121,14 @@
       <workItem from="1600976248626" duration="1892000" />
       <workItem from="1601717813301" duration="3256000" />
       <workItem from="1601827864311" duration="3969000" />
-      <workItem from="1601835907143" duration="1731000" />
+      <workItem from="1601835907143" duration="1770000" />
+      <workItem from="1601885192675" duration="1094000" />
+      <workItem from="1601895282283" duration="646000" />
+      <workItem from="1602081855183" duration="2819000" />
+      <workItem from="1602098982221" duration="2005000" />
+      <workItem from="1602270530345" duration="3090000" />
+      <workItem from="1602341313866" duration="10736000" />
+      <workItem from="1602440461060" duration="3648000" />
     </task>
     <task id="LOCAL-00001" summary="Adds Controller2D.cs">
       <created>1600803426309</created>
@@ -119,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600978128863</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="implements state machine classes for player logic">
+      <created>1601837699336</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1601837699336</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,9 +179,13 @@
     <option name="LAST_COMMIT_MESSAGE" value="implements state machine classes for player logic" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="670" y="198" key="RiderGenerateDialog" timestamp="1601836980512">
+    <state x="670" y="198" key="RiderGenerateDialog" timestamp="1602363140401">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="670" y="198" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601836980512" />
+    <state x="670" y="198" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602363140401" />
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog" timestamp="1602360952408">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602360952408" />
   </component>
 </project>

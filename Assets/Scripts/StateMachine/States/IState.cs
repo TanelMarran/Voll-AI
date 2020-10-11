@@ -1,4 +1,5 @@
 ﻿using UnityEngine.PlayerLoop;
+using UnityEngine;
 
 namespace Movement
 {
@@ -11,9 +12,19 @@ namespace Movement
             this.Handler = handler;
         }
 
-        public abstract void Update();
+        public virtual void Start(){
+            
+        }
 
-        public abstract void FixedUpdate();
+        public virtual void Update()
+        {
+            
+        }
+
+        public virtual void FixedUpdate()
+        {
+            
+        }
         
         public override string ToString()
         {

@@ -11,7 +11,7 @@ public class Controller2D : MonoBehaviour
 {
     public LayerMask CollisionMask;
     
-    private const float SkinWidth = .015f;
+    public const float SkinWidth = .015f;
     public int horizontalRayCount = 4;
     public int verticalRayCount = 4;
     public CollisionInfo Collisions;
@@ -100,6 +100,28 @@ public class Controller2D : MonoBehaviour
         }
     }
 
+    public bool hasCollisionBelow()
+    {
+        Vector2 velocity = Vector2.down * SkinWidth * 2;
+        
+        float directionY = Mathf.Sign(velocity.y);
+        float rayLength = Mathf.Abs(velocity.y) + SkinWidth;
+        
+        for (int i = 0; i < verticalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionY == -1 ? _rayCastOrigins.BottomLeft : _rayCastOrigins.TopLeft);
+            rayOrigin += Vector2.right * (i * _verticalRaySpacing + velocity.x);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, CollisionMask);
+
+            if (hit)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void Move(Vector3 velocity)
     {
         Collisions.Reset();
@@ -118,7 +140,7 @@ public class Controller2D : MonoBehaviour
         transform.Translate(velocity);
     }
 
-    public struct CollisionInfo
+    [Serializable] public struct CollisionInfo
     {
         public bool above, below;
         public bool left, right;

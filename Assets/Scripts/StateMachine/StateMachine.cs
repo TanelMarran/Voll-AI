@@ -2,9 +2,10 @@
 using Movement;
 using UnityEngine;
 
+[Serializable]
 public class StateMachine<T>
 {
-    private State<T> _state;
+    [SerializeField] public State<T> _state;
 
     public StateMachine()
     {
@@ -13,6 +14,7 @@ public class StateMachine<T>
     public void SetState(State<T> state)
     {
         _state = state;
+        _state.Start();
     }
 
     public void Update()
