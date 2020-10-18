@@ -9,7 +9,7 @@ namespace Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            Player player = (Player) target;
+            var player = (Player) target;
             
             GUILayout.Space(20f);
             GUILayout.Label("State: " + player.State);

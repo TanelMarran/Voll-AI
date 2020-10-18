@@ -11,23 +11,31 @@
           <e p="PlayerEditor.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
-          <e p="Ball.cs" t="Include" />
-          <e p="BallDefault.cs" t="Include" />
+          <e p="Game.cs" t="Include" />
           <e p="Input" t="Include">
             <e p="InputHandler.cs" t="Include" />
             <e p="MainInput.cs" t="Include" />
           </e>
           <e p="Movement" t="Include">
             <e p="Controller2D.cs" t="Include" />
-            <e p="Player.cs" t="Include" />
+            <e p="MovementVector.cs" t="Include" />
           </e>
           <e p="StateMachine" t="Include">
             <e p="StateMachine.cs" t="Include" />
             <e p="States" t="Include">
+              <e p="Ball" t="Include">
+                <e p="Ball.cs" t="Include" />
+                <e p="BallBurst.cs" t="Include" />
+                <e p="BallDefault.cs" t="Include" />
+                <e p="BallHang.cs" t="Include" />
+              </e>
               <e p="IState.cs" t="Include" />
-              <e p="PlayerAir.cs" t="Include" />
-              <e p="PlayerDash.cs" t="Include" />
-              <e p="PlayerGround.cs" t="Include" />
+              <e p="Player" t="Include">
+                <e p="Player.cs" t="Include" />
+                <e p="PlayerAir.cs" t="Include" />
+                <e p="PlayerDash.cs" t="Include" />
+                <e p="PlayerGround.cs" t="Include" />
+              </e>
             </e>
           </e>
         </e>

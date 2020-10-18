@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using Input;
+﻿using Input;
 using Movement;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
+    public Game game;
+    
     public float movementSpeed = 5;
     public float jumpPower = 20;
-    
-    [SerializeField] public StateMachine<Player> State;
+
+    public StateMachine<Player> State;
     public PlayerGround PlayerGround;
     public PlayerAir PlayerAir;
     public PlayerDash PlayerDash;
-    public MainInput actions;
+    public MainInput Actions;
     public ContactFilter2D ballFilter;
     
     public float gravity = -40;
-    public Vector3 velocity;
+    public MovementVector velocity;
 
     [HideInInspector] public Controller2D controller2D;
     [HideInInspector] public InputHandler input;
@@ -38,18 +35,18 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        actions = new MainInput();
+        Actions = new MainInput();
     }
 
     private void OnEnable()
     {
-        actions.Enable();
+        Actions.Enable();
     }
 
     private void OnDisable()
     {
         
-        actions.Disable();
+        Actions.Disable();
     }
 
     private void InitializeStates()
@@ -72,13 +69,18 @@ public class Player : MonoBehaviour
     
     public bool IsBallInRange()
     {
-        List<Collider2D> results = new List<Collider2D>();
-        
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.SetLayerMask(LayerMask.GetMask($"Ball"));
+        return _ballCollider.IsTouching(game.Ball.controller2D.collider);
+    }
 
-        int hit = _ballCollider.OverlapCollider(filter, results);
+    public void HitBehaviour(bool hit)
+    {
+        if (hit && IsBallInRange())
+        {
+            Ball ball = game.Ball;
 
-        return hit > 0;
+            Vector2 hitVelocity = Actions.Player.Movement.ReadValue<Vector2>() * 10f;
+            ball.velocity.current = hitVelocity;
+            ball.State.SetState(ball.BurstState);
+        }
     }
 }

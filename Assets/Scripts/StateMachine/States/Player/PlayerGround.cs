@@ -1,15 +1,12 @@
-﻿using System;
-using Movement;
-using UnityEngine;
-using UnityEngine.XR;
+﻿using UnityEngine;
 
 namespace Movement
 {
     public class PlayerGround : State<Player>
     {
-        private bool _jumped = false;
-        private bool _dashed = false;
-        private bool _hit = false;
+        private bool _jumped;
+        private bool _dashed;
+        private bool _hit;
         
         public PlayerGround(Player handler) : base(handler)
         {
@@ -18,6 +15,7 @@ namespace Movement
         public override void Start()
         {
             ResetVariables();
+            Handler.velocity.resting.y = 0;
         }
 
         private void ResetVariables()
@@ -29,29 +27,25 @@ namespace Movement
 
         public override void Update()
         {
-            _jumped = Handler.actions.Player.Jump.triggered || _jumped;
-            _dashed = Handler.actions.Player.Dash.triggered || _dashed;
-            _hit = Handler.actions.Player.Hit.triggered || _hit;
+            _jumped = Handler.Actions.Player.Jump.triggered || _jumped;
+            _dashed = Handler.Actions.Player.Dash.triggered || _dashed;
+            _hit = Handler.Actions.Player.Hit.triggered || _hit;
         }
 
         public override void FixedUpdate()
         {
             if (_jumped)
             {
-                Handler.velocity.y = Handler.jumpPower;
+                Handler.velocity.resting.y = Handler.velocity.current.y = Handler.jumpPower;
                 _jumped = false;
             }
 
-            if (_hit && Handler.IsBallInRange())
-            {
-                Ball ball = GameObject.FindWithTag("Ball").GetComponent<Ball>();
-                
-                ball.velocity = Vector2.up * 10;
-            }
+            Handler.HitBehaviour(_hit);
 
-            Handler.velocity.x = Handler.actions.Player.Movement.ReadValue<Vector2>().x * Handler.movementSpeed;
+            Handler.velocity.resting.x = Handler.Actions.Player.Movement.ReadValue<Vector2>().x * Handler.movementSpeed;
 
-            Handler.controller2D.Move(Handler.velocity * Time.deltaTime);
+            Handler.velocity.Lerp(40f * Time.deltaTime);
+            Handler.controller2D.Move(Handler.velocity.current * Time.deltaTime);
 
             if (!Handler.controller2D.hasCollisionBelow())
             {

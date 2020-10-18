@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/MainInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input/MainInput.inputactions'
 
 using System;
 using System.Collections;
@@ -154,7 +154,7 @@ public class @MainInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Stick"",
                     ""id"": ""4d94452d-76cc-4abd-8732-68cf9788ae6b"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
