@@ -1,11 +1,12 @@
 ﻿using Input;
 using Movement;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
-    public Game game;
+    [FormerlySerializedAs("game")] public Game Game;
     
     public float movementSpeed = 5;
     public float jumpPower = 20;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     
     public float gravity = -40;
     public MovementVector velocity;
+    public bool isJumping = false;
 
     [HideInInspector] public Controller2D controller2D;
     [HideInInspector] public InputHandler input;
@@ -69,14 +71,14 @@ public class Player : MonoBehaviour
     
     public bool IsBallInRange()
     {
-        return _ballCollider.IsTouching(game.Ball.controller2D.collider);
+        return _ballCollider.IsTouching(Game.Ball.controller2D.collider);
     }
 
     public void HitBehaviour(bool hit)
     {
         if (hit && IsBallInRange())
         {
-            Ball ball = game.Ball;
+            Ball ball = Game.Ball;
 
             Vector2 hitVelocity = Actions.Player.Movement.ReadValue<Vector2>() * 10f;
             ball.velocity.current = hitVelocity;

@@ -163,7 +163,10 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   gravity: -40
-  velocity: {x: 0, y: 0, z: 0}
+  velocity:
+    current: {x: 0, y: 0}
+    resting: {x: 0, y: 0}
+  isJumping: 0
   controller2D: {fileID: 6207672349172261935}
   input: {fileID: 0}
 --- !u!114 &6207672349172261941
@@ -194,4 +197,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 0.6

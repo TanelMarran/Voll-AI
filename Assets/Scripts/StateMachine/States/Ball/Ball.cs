@@ -1,5 +1,6 @@
 ﻿using Movement;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Controller2D))]
 public class Ball : MonoBehaviour
@@ -14,11 +15,16 @@ public class Ball : MonoBehaviour
     public State<Ball> DefaultState;
     public State<Ball> BurstState;
     public State<Ball> HangState;
+    public ContactFilter2D playerContactFilter;
+    public float ContactCooldown = 0f;
+    public float ContactCooldownTimestamp = 0;
+    public bool isInsidePlayer = false;
 
     // Start is called before the first frame update
     void Start()
     {
         controller2D = GetComponent<Controller2D>();
+        ContactCooldownTimestamp = Time.time;
         InitializeStates();
     }
 

@@ -20,35 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0ccda5e-ac0e-418a-a015-4ac870074d12" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Movement/MovementVector.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Movement/MovementVector.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallBurst.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallBurst.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallDefault.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallHang.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallHang.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerAir.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Editor/PlayerEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/PlayerEditor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/Ball.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ball.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/Ball.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BallDefault.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BallDefault.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallDefault.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/MainInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/MainInput.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/MainInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/MainInput.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/Controller2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Movement/Controller2D.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/Player.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerAir.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerAir.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerAir.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerDash.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerDash.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerDash.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerDash.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerGround.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerGround.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerGround.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerGround.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/Ball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/Ball.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallDefault.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallDefault.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerAir.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerAir.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerDash.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerDash.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerGround.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerGround.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +48,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CD36D161-0EDB-4909-9A63-E42167ECF462/b3/09853e19/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CD36D161-0EDB-4909-9A63-E42167ECF462/ae/6239d21b/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PlayerAgent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C86099A8-45D8-4352-831D-42392525F93D/36/12121819/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BE184878-56B8-4BBD-A6AF-D9E5DDDBB53F/e0/ead34297/Collider2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CD36D161-0EDB-4909-9A63-E42167ECF462/05/8a68ee1d/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/SceneManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CD36D161-0EDB-4909-9A63-E42167ECF462/42/7be07d67/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/CD36D161-0EDB-4909-9A63-E42167ECF462/83/de3976f8/Component.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -79,7 +71,6 @@
         <option value="$PROJECT_DIR$/Assets/Editor/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/StateMachine.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/IState.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Movement/Movement.cs" />
         <option value="$PROJECT_DIR$/Assets/Editor/Changer.cs" />
         <option value="$PROJECT_DIR$/Assets/Editor/MovementVectorDrawer.cs" />
@@ -95,12 +86,18 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerAir.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/PlayerDash.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallDefault.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallHangcs.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/Ball.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallHang.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallBurst.cs" />
+        <option value="$PROJECT_DIR$/Assets/SceneManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/Ball.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Ball/BallDefault.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerGround.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerDash.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateMachine/States/Player/PlayerAir.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
+        <option value="$PROJECT_DIR$/Assets/PlayerAgent.cs" />
       </list>
     </option>
   </component>
@@ -113,6 +110,7 @@
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -157,7 +155,12 @@
       <workItem from="1602440461060" duration="3696000" />
       <workItem from="1602448699556" duration="908000" />
       <workItem from="1602484657761" duration="1836000" />
-      <workItem from="1603013928828" duration="20510000" />
+      <workItem from="1603013928828" duration="20540000" />
+      <workItem from="1604906644272" duration="6377000" />
+      <workItem from="1604956703362" duration="228000" />
+      <workItem from="1605293062137" duration="11873000" />
+      <workItem from="1605350867540" duration="11139000" />
+      <workItem from="1605378513704" duration="1637000" />
     </task>
     <task id="LOCAL-00001" summary="Adds Controller2D.cs">
       <created>1600803426309</created>
@@ -194,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602444158368</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Implements basic ball interaction">
+      <created>1603047205572</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1603047205572</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,22 +230,32 @@
     <MESSAGE value="Adds horizontal and vertical collision detection" />
     <MESSAGE value="implements state machine classes for player logic" />
     <MESSAGE value="Implements initial Player and Ball interaction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implements initial Player and Ball interaction" />
+    <MESSAGE value="Implements basic ball interaction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implements basic ball interaction" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="583" y="98" key="CommitChangelistDialog2" timestamp="1602444157400">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="777" y="132" key="CommitChangelistDialog2" timestamp="1603047204580">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="583" y="98" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602444157400" />
-    <state x="893" y="267" width="579" height="540" key="RiderGenerateDialog" timestamp="1603027911752">
+    <state x="777" y="132" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1603047204580" />
+    <state x="893" y="267" width="579" height="540" key="RiderGenerateDialog" timestamp="1605381364397">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="670" y="198" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602363140401" />
-    <state x="893" y="267" width="579" height="540" key="RiderGenerateDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1603027911752" />
+    <state x="893" y="267" width="579" height="540" key="RiderGenerateDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605381364397" />
     <state x="123" y="124" width="2315" height="1153" key="VCS.FileHistoryDialog" timestamp="1603033606591">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602360952408" />
     <state x="123" y="124" width="2315" height="1153" key="VCS.FileHistoryDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1603033606591" />
+    <state x="947" y="256" width="666" height="888" key="find.popup" timestamp="1605357170068">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="947" y="256" width="666" height="888" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1605357170068" />
+    <state x="353" y="332" key="run.anything.popup" timestamp="1604915394502">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="353" y="332" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1604915394502" />
   </component>
 </project>

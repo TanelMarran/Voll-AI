@@ -7,23 +7,23 @@
             "actions": [
                 {
                     "name": "Jump",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "09c2b75c-3fce-44e8-b893-2c80d6739165",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
                     "name": "Dash",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "7f2ece42-e69a-41e0-b39e-2a534469c72c",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
                     "name": "Hit",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "4f433610-0ad6-467a-8629-d52e264d8061",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -31,9 +31,9 @@
                 },
                 {
                     "name": "Movement",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "fcf07271-948a-417a-a428-a4cab398c8aa",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
