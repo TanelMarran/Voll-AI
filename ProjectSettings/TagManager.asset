@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - Floor
+  - Net
   layers:
   - Default
   - TransparentFX

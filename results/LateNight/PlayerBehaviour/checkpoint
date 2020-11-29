@@ -1,0 +1,3 @@
+model_checkpoint_path: "PlayerBehaviour-500800.ckpt"
+all_model_checkpoint_paths: "PlayerBehaviour-499968.ckpt"
+all_model_checkpoint_paths: "PlayerBehaviour-500800.ckpt"

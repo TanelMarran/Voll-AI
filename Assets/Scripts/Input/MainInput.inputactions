@@ -2,12 +2,12 @@
     "name": "MainInput",
     "maps": [
         {
-            "name": "Player",
+            "name": "Player ",
             "id": "762af0b4-15de-4edf-9e7e-30dd07f92eeb",
             "actions": [
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "09c2b75c-3fce-44e8-b893-2c80d6739165",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -15,16 +15,8 @@
                 },
                 {
                     "name": "Dash",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "7f2ece42-e69a-41e0-b39e-2a534469c72c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Hit",
-                    "type": "Button",
-                    "id": "4f433610-0ad6-467a-8629-d52e264d8061",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -141,7 +133,7 @@
                 {
                     "name": "Stick",
                     "id": "4d94452d-76cc-4abd-8732-68cf9788ae6b",
-                    "path": "2DVector(mode=2)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -192,28 +184,6 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "46693ecc-5eee-4eec-a61d-39e8cbc78d9d",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Hit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "394ad8c8-df31-477a-8322-88c5930df7bb",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Hit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

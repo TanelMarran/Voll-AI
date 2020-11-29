@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 6207672349172261934}
   - component: {fileID: 6207672349172261935}
   - component: {fileID: 6207672349172261938}
-  - component: {fileID: 6207672349172261941}
   - component: {fileID: 6207672349172261940}
+  - component: {fileID: 2150240355553536949}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -167,21 +167,8 @@ MonoBehaviour:
     current: {x: 0, y: 0}
     resting: {x: 0, y: 0}
   isJumping: 0
+  Input: {fileID: 0}
   controller2D: {fileID: 6207672349172261935}
-  input: {fileID: 0}
---- !u!114 &6207672349172261941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6207672349172261932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ac4bffb6484a5bb2a5cc7304927a0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Axis: {x: 0, y: 0}
 --- !u!58 &6207672349172261940
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -198,3 +185,46 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
+--- !u!114 &2150240355553536949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207672349172261932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 8e59ce8801c58fe40b146841cb1f9c87,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 09c2b75c-3fce-44e8-b893-2c80d6739165
+    m_ActionName: Player /Jump[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7f2ece42-e69a-41e0-b39e-2a534469c72c
+    m_ActionName: Player /Dash[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fcf07271-948a-417a-a428-a4cab398c8aa
+    m_ActionName: Player /Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 'Player '
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

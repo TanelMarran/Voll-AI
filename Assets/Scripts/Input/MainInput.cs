@@ -15,12 +15,12 @@ public class @MainInput : IInputActionCollection, IDisposable
     ""name"": ""MainInput"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""Player "",
             ""id"": ""762af0b4-15de-4edf-9e7e-30dd07f92eeb"",
             ""actions"": [
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""09c2b75c-3fce-44e8-b893-2c80d6739165"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -28,16 +28,8 @@ public class @MainInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Dash"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""7f2ece42-e69a-41e0-b39e-2a534469c72c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Hit"",
-                    ""type"": ""Button"",
-                    ""id"": ""4f433610-0ad6-467a-8629-d52e264d8061"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -154,7 +146,7 @@ public class @MainInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Stick"",
                     ""id"": ""4d94452d-76cc-4abd-8732-68cf9788ae6b"",
-                    ""path"": ""2DVector(mode=2)"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -205,28 +197,6 @@ public class @MainInput : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""46693ecc-5eee-4eec-a61d-39e8cbc78d9d"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Hit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""394ad8c8-df31-477a-8322-88c5930df7bb"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Hit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -256,11 +226,10 @@ public class @MainInput : IInputActionCollection, IDisposable
         }
     ]
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        // Player 
+        m_Player = asset.FindActionMap("Player ", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_Hit = m_Player.FindAction("Hit", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
     }
 
@@ -308,12 +277,11 @@ public class @MainInput : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // Player
+    // Player 
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_Hit;
     private readonly InputAction m_Player_Movement;
     public struct PlayerActions
     {
@@ -321,7 +289,6 @@ public class @MainInput : IInputActionCollection, IDisposable
         public PlayerActions(@MainInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @Hit => m_Wrapper.m_Player_Hit;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -338,9 +305,6 @@ public class @MainInput : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Hit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHit;
-                @Hit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHit;
-                @Hit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHit;
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
@@ -354,9 +318,6 @@ public class @MainInput : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
-                @Hit.started += instance.OnHit;
-                @Hit.performed += instance.OnHit;
-                @Hit.canceled += instance.OnHit;
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
@@ -386,7 +347,6 @@ public class @MainInput : IInputActionCollection, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnHit(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
     }
 }

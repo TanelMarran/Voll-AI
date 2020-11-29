@@ -118,6 +118,28 @@ public class Controller2D : MonoBehaviour
         return false;
     }
 
+    public Collider2D CollisionBelow()
+    {
+        Vector2 velocity = Vector2.down * (SkinWidth * 2);
+        
+        float directionY = Mathf.Sign(velocity.y);
+        float rayLength = Mathf.Abs(velocity.y) + SkinWidth;
+        
+        for (int i = 0; i < verticalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionY == -1 ? _rayCastOrigins.BottomLeft : _rayCastOrigins.TopLeft);
+            rayOrigin += Vector2.right * (i * _verticalRaySpacing + velocity.x);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+
+            if (hit)
+            {
+                return hit.collider;
+            }
+        }
+
+        return null;
+    }
+
     public void Move(Vector2 velocity)
     {
         collisions.Reset();

@@ -1,4 +1,5 @@
-﻿using Input;
+﻿using System;
+using Input;
 using Movement;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -21,18 +22,18 @@ public class Player : MonoBehaviour
     public float gravity = -40;
     public MovementVector velocity;
     public bool isJumping = false;
+    [FormerlySerializedAs("Input")] public PlayerInputManager inputManager;
 
     [HideInInspector] public Controller2D controller2D;
-    [HideInInspector] public InputHandler input;
-    private CircleCollider2D _ballCollider;
+    [NonSerialized] public CircleCollider2D _ballCollider;
 
     private void Start()
     {
         State = new StateMachine<Player>();
         InitializeStates();
         controller2D = GetComponent<Controller2D>();
-        input = GetComponent<InputHandler>();
         _ballCollider = GetComponent<CircleCollider2D>();
+        inputManager = GetComponent<PlayerInputManager>();
     }
 
     private void Awake()
@@ -47,7 +48,6 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        
         Actions.Disable();
     }
 

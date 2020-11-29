@@ -1,0 +1,47 @@
+{
+    "PlayerBehaviour": {
+        "checkpoints": [
+            {
+                "steps": 295721,
+                "file_path": "results\\Nov21\\PlayerBehaviour\\PlayerBehaviour-295721.nn",
+                "reward": null,
+                "creation_time": 1605988010.919586
+            },
+            {
+                "steps": 499993,
+                "file_path": "results\\Nov21\\PlayerBehaviour\\PlayerBehaviour-499993.nn",
+                "reward": null,
+                "creation_time": 1606004007.1558409
+            },
+            {
+                "steps": 548586,
+                "file_path": "results\\Nov21\\PlayerBehaviour\\PlayerBehaviour-548586.nn",
+                "reward": 3.2991271556488106,
+                "creation_time": 1606007377.4933486
+            },
+            {
+                "steps": 999989,
+                "file_path": "results\\Nov21\\PlayerBehaviour\\PlayerBehaviour-999989.nn",
+                "reward": 2.131163549423218,
+                "creation_time": 1606031701.8883696
+            },
+            {
+                "steps": 1235897,
+                "file_path": "results\\Nov21\\PlayerBehaviour\\PlayerBehaviour-1235897.nn",
+                "reward": null,
+                "creation_time": 1606044688.478646
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1235897,
+            "file_path": "results\\Nov21\\PlayerBehaviour.nn",
+            "reward": null,
+            "creation_time": 1606044688.478646
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.1",
+        "tensorflow_version": "2.3.1"
+    }
+}
