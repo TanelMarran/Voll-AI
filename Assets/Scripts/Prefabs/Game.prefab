@@ -1,5 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1095517914760885184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915186196853295614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 12
+    NumStackedVectorObservations: 1
+    VectorActionSize: 03000000030000000200000002000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: PlayerBehaviour
+  TeamId: 1
+  m_UseChildSensors: 1
 --- !u!114 &1885543855674811077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,13 +70,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513887111b384ba68d667b3f589431cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1095517914760885184
+--- !u!114 &4299852065982422959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6915186196853295614}
+  m_GameObject: {fileID: 8528963975397317455}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
@@ -61,14 +85,14 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 12
     NumStackedVectorObservations: 1
-    VectorActionSize: 04000000
+    VectorActionSize: 03000000030000000200000002000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 1
+    VectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: PlayerBehaviour
-  TeamId: 1
+  TeamId: 0
   m_UseChildSensors: 1
 --- !u!114 &8528963975564542848
 MonoBehaviour:
@@ -116,30 +140,6 @@ MonoBehaviour:
   otherPlayer: {fileID: 6915186196853295584}
   agentPlayer: {fileID: 8528963975397317457}
   XFlipped: 0
---- !u!114 &4299852065982422959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8528963975397317455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BrainParameters:
-    VectorObservationSize: 12
-    NumStackedVectorObservations: 1
-    VectorActionSize: 04000000
-    VectorActionDescriptions: []
-    VectorActionSpaceType: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: PlayerBehaviour
-  TeamId: 0
-  m_UseChildSensors: 1
 --- !u!1 &8528963975866234376
 GameObject:
   m_ObjectHideFlags: 0

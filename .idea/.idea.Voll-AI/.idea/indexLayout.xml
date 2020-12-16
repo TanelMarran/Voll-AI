@@ -23,6 +23,7 @@
       <Path>.idea</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Temp</Path>
       <Path>config</Path>
       <Path>obj</Path>
       <Path>python-envs</Path>

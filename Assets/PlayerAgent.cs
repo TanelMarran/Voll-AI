@@ -17,7 +17,7 @@ public class PlayerAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         // Agent
-        var pos = agentPlayer.transform.localPosition;
+        var pos = agentPlayer.transform.localPosition / 11.5f;
         sensor.AddObservation(pos.x * xFlipMul);
         sensor.AddObservation(pos.y);
         
@@ -26,7 +26,7 @@ public class PlayerAgent : Agent
         sensor.AddObservation(vel.y);
 
         // Opponent
-        pos = otherPlayer.transform.localPosition;
+        pos = otherPlayer.transform.localPosition / 11.5f;
         sensor.AddObservation(pos.x * xFlipMul);
         sensor.AddObservation(pos.y);
 
@@ -35,7 +35,7 @@ public class PlayerAgent : Agent
         sensor.AddObservation(vel.y);
 
         // Ball
-        pos = ball.transform.localPosition;
+        pos = ball.transform.localPosition / 11.5f;
         sensor.AddObservation(pos.x * xFlipMul);
         sensor.AddObservation(pos.y);
         
@@ -44,14 +44,14 @@ public class PlayerAgent : Agent
         sensor.AddObservation(vel.y);
     }
 
-    public override void OnActionReceived(float[] vectorAction)
+    public override void OnActionReceived(float[] actions)
     {
         Vector2 movement = new Vector2();
-        movement.x = Mathf.Abs(vectorAction[0]) > .5f ? vectorAction[0] * xFlipMul : 0;
-        movement.y = Mathf.Abs(vectorAction[1]) > .5f ? vectorAction[1] : 0;
+        movement.x = (int)actions[0] == 0 ? xFlipMul : (int)actions[0] == 1 ? -xFlipMul : 0;
+        movement.y = (int)actions[1] == 0 ? xFlipMul : (int)actions[1] == 1 ? -xFlipMul : 0;
         agentPlayer.inputManager.SetMovementKey(movement);
-        agentPlayer.inputManager.SetJumpKey(vectorAction[2]);
-        agentPlayer.inputManager.SetDashKey(vectorAction[3]);
+        agentPlayer.inputManager.SetJumpKey((int)actions[2]);
+        agentPlayer.inputManager.SetDashKey((int)actions[3]);
         float checkPoints = ball.Game.leftPoint;
         float otherPoints = ball.Game.rightPoint;
 
@@ -64,28 +64,19 @@ public class PlayerAgent : Agent
         // Reached target
         if (checkPoints > accountedPoints)
         {
-            EndEpisode();
+            AddReward(1);
             accountedPoints = checkPoints;
         }
 
-        AddReward(0.01f);
-
-        float dist = (agentPlayer.transform.position - ball.transform.position).magnitude;
-        float threshold = 5f;
-        if (dist < threshold)
-        {
-            AddReward(0.2f * Time.deltaTime * (1 - dist / threshold));
-        }
-        
-        if (ball.Game.rightPoint  > 3 || ball.Game.leftPoint > 3)
+        if (ball.Game.rightPoint > 3 || ball.Game.leftPoint > 3)
         {
             if (checkPoints > otherPoints)
             {
-                //AddReward(1.0f);
+                AddReward(1.0f);
             }
             else
             {
-                //AddReward(-1.0f);
+                AddReward(-1.0f);
             }
             EndEpisode();
         }

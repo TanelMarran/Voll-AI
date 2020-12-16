@@ -21,6 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f0ccda5e-ac0e-418a-a015-4ac870074d12" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Voll-AI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ML-Agents/Timers/SampleScene_timers.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ML-Agents/Timers/SampleScene_timers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayerAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayerAgent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prefabs/Game.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Prefabs/Game.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +163,9 @@
       <workItem from="1605821008024" duration="8951000" />
       <workItem from="1605956624880" duration="12290000" />
       <workItem from="1606069678845" duration="11674000" />
-      <workItem from="1606654876706" duration="4824000" />
+      <workItem from="1606654876706" duration="5072000" />
+      <workItem from="1607874345225" duration="461000" />
+      <workItem from="1608050195097" duration="12111000" />
     </task>
     <task id="LOCAL-00001" summary="Adds Controller2D.cs">
       <created>1600803426309</created>
@@ -233,6 +239,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Implements basic ball interaction" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="94" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608052110996">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="94" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1608052110996" />
     <state x="777" y="132" key="CommitChangelistDialog2" timestamp="1603047204580">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
