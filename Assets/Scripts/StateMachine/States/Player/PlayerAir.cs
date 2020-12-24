@@ -17,7 +17,7 @@ public class PlayerAir : State<Player>
     public override void Start()
     {
         ResetVariables();
-        if (Handler.isJumping && Handler.inputManager.JumpReleased())
+        if (Handler.isJumping && Handler.inputTransformer.JumpReleased())
         {
             Handler.isJumping = false;
             Handler.velocity.current.y *= 0.5f;
@@ -31,20 +31,20 @@ public class PlayerAir : State<Player>
 
     public override void FixedUpdate()
     {
-        float deltaTime = Handler.Game.GameDelta;
+        float deltaTime = Handler.game.GameDelta;
 
         if (Handler.velocity.current.y < 0)
         {
             Handler.isJumping = false;
         }
         
-        if (Handler.isJumping && Handler.inputManager.JumpReleased())
+        if (Handler.isJumping && Handler.inputTransformer.JumpReleased())
         {
             Handler.isJumping = false;
             Handler.velocity.current.y *= 0.5f;
         }
         
-        Handler.velocity.resting.x = Handler.inputManager.Movement().x * Handler.movementSpeed;
+        Handler.velocity.resting.x = Handler.inputTransformer.Movement().x * Handler.movementSpeed;
         Handler.velocity.resting.y = Handler.velocity.current.y += Handler.gravity * deltaTime;
 
         Handler.velocity.Lerp(40f * deltaTime);
@@ -57,7 +57,7 @@ public class PlayerAir : State<Player>
             Handler.State.SetState(Handler.PlayerGround);
         }
         
-        if (Handler.inputManager.DashPressed())
+        if (Handler.inputTransformer.JumpPressed())
         {
             Handler.State.SetState(Handler.PlayerDash);
         }

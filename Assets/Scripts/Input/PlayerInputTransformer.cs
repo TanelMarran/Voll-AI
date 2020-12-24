@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Input
 {
-    public class PlayerInputManager : AbstractInputHandler
+    public class PlayerInputTransformer : AbstractInputHandler
     {
         private Vector2 movement;
         private bool isJumpDown;

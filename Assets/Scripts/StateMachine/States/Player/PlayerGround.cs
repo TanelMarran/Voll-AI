@@ -33,18 +33,16 @@ namespace Movement
 
         public override void FixedUpdate()
         {
-            float deltaTime = Handler.Game.GameDelta;
+            float deltaTime = Handler.game.GameDelta;
 
-            if (Handler.inputManager.JumpPressed())
+            if (Handler.inputTransformer.JumpPressed())
             {
                 Handler.velocity.resting.y = Handler.velocity.current.y = Handler.jumpPower;
                 Handler.isJumping = true;
                 _jumped = false;
             }
 
-            Handler.HitBehaviour(_hit);
-
-            Handler.velocity.resting.x = Handler.inputManager.Movement().x * Handler.movementSpeed;
+            Handler.velocity.resting.x = Handler.inputTransformer.Movement().x * Handler.movementSpeed;
 
             Handler.velocity.Lerp(40f * deltaTime);
             Handler.controller2D.Move(Handler.velocity.current * deltaTime);
@@ -52,11 +50,6 @@ namespace Movement
             if (!Handler.controller2D.hasCollisionBelow())
             {
                 Handler.State.SetState(Handler.PlayerAir);
-            }
-            
-            if (Handler.inputManager.DashPressed())
-            {
-                Handler.State.SetState(Handler.PlayerDash);
             }
 
             ResetVariables();

@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Controller2D))]
+[RequireComponent(typeof(PlayerInputTransformer))]
 public class Player : MonoBehaviour
 {
-    [FormerlySerializedAs("game")] public Game Game;
+    public Game game;
     
     public float movementSpeed = 5;
     public float jumpPower = 20;
@@ -22,10 +23,12 @@ public class Player : MonoBehaviour
     public float gravity = -40;
     public MovementVector velocity;
     public bool isJumping = false;
-    [FormerlySerializedAs("Input")] public PlayerInputManager inputManager;
+    [HideInInspector] public PlayerInputTransformer inputTransformer;
 
     [HideInInspector] public Controller2D controller2D;
     [NonSerialized] public CircleCollider2D _ballCollider;
+    
+    public LineRenderer Line;
 
     private void Start()
     {
@@ -33,7 +36,7 @@ public class Player : MonoBehaviour
         InitializeStates();
         controller2D = GetComponent<Controller2D>();
         _ballCollider = GetComponent<CircleCollider2D>();
-        inputManager = GetComponent<PlayerInputManager>();
+        inputTransformer = GetComponent<PlayerInputTransformer>();
     }
 
     private void Awake()
@@ -67,22 +70,5 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         State.FixedUpdate();
-    }
-    
-    public bool IsBallInRange()
-    {
-        return _ballCollider.IsTouching(Game.Ball.controller2D.collider);
-    }
-
-    public void HitBehaviour(bool hit)
-    {
-        if (hit && IsBallInRange())
-        {
-            Ball ball = Game.Ball;
-
-            Vector2 hitVelocity = Actions.Player.Movement.ReadValue<Vector2>() * 10f;
-            ball.velocity.current = hitVelocity;
-            ball.State.SetState(ball.BurstState);
-        }
     }
 }

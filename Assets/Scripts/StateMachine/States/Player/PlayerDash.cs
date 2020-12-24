@@ -16,28 +16,28 @@ namespace Movement
 
         public override void Start()
         {
-            _dashDirection = Handler.inputManager.Movement();
+            _dashDirection = Handler.inputTransformer.Movement();
             float direction = Mathf.Round(Vector2.SignedAngle(Vector2.right, _dashDirection) / 45f) * 45f * Mathf.Deg2Rad;
             _dashDirection = new Vector2(Mathf.Cos(direction), Mathf.Sin(direction));
             _dashDirection.Normalize();
-            _dashEndTime = Handler.Game.GameTime + DashTime;
+            _dashEndTime = Handler.game.GameTime + DashTime;
             Handler.velocity.current = _dashDirection * DashStrength;
             Handler.velocity.resting = Vector2.zero;
         }
 
         public override void FixedUpdate()
         {
-            float deltaTime = Handler.Game.GameDelta;
-            float time = Handler.Game.GameTime;
+            float deltaTime = Handler.game.GameDelta;
+            float time = Handler.game.GameTime;
             
             if (Handler.Actions.Player.Movement.ReadValue<Vector2>().magnitude != 0)
             {
-                float inputDirection = Vector2.SignedAngle(Vector2.right, Handler.inputManager.Movement());
+                float inputDirection = Vector2.SignedAngle(Vector2.right, Handler.inputTransformer.Movement());
                 float movementDirection = Vector2.SignedAngle(Vector2.right, Handler.velocity.current);
                 float lerpDirection = Mathf.Deg2Rad * movementDirection;
                 if (inputDirection - movementDirection != 0)
                 {
-                    lerpDirection = Mathf.Deg2Rad * Mathf.LerpAngle(movementDirection, inputDirection, (300f / Mathf.Abs(inputDirection - movementDirection)) * deltaTime); //120f / Mathf.DeltaAngle(movementDirection, inputDirection) * Time.deltaTime
+                    //lerpDirection = Mathf.Deg2Rad * Mathf.LerpAngle(movementDirection, inputDirection, (300f / Mathf.Abs(inputDirection - movementDirection)) * deltaTime); //120f / Mathf.DeltaAngle(movementDirection, inputDirection) * Time.deltaTime
 
                 }
                 float movementVelocity = Handler.velocity.current.magnitude;
