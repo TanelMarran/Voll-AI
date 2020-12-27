@@ -591,6 +591,7 @@ MonoBehaviour:
   velocity:
     current: {x: 0, y: 0}
     resting: {x: 0, y: 0}
+  AirRestitutionFactor: 0.7
   controller2D: {fileID: 0}
   Collider2D: {fileID: 0}
 --- !u!1 &743982350
@@ -1156,8 +1157,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 1826195259}
-  movementSpeed: 5
+  movementSpeed: 7
   jumpPower: 10
+  DashStrength: 16
+  HitStrength: 15
   ballFilter:
     useTriggers: 0
     useLayerMask: 0

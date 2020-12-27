@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
 {
     public Game game;
     public MovementVector velocity;
+    [Range(0, 1)] public float AirRestitutionFactor = 0.5f;
     
     [HideInInspector] public Controller2D controller2D;
 
@@ -24,10 +25,22 @@ public class Ball : MonoBehaviour
     void FixedUpdate()
     {
         float deltaTime = game.GameDelta;
-        
-        velocity.resting.y = velocity.current.y = Mathf.Max(-Game.maxFallSpeed, velocity.current.y - Game.gravityAmount * deltaTime);
 
-        velocity.applyRestitution(Game.airRestitution * deltaTime);
+        if (controller2D.collisions.below || controller2D.collisions.above)
+        {
+            velocity.current.y *= -0.9f;
+            controller2D.collisions.Reset();
+        }
+        
+        if (controller2D.collisions.left || controller2D.collisions.right)
+        {
+            velocity.current.x *= -0.9f;
+            controller2D.collisions.Reset();
+        }
+        
+        velocity.resting.y = velocity.current.y = Mathf.Max(-Game.maxFallSpeed, velocity.current.y - Game.gravityAmount * deltaTime * AirRestitutionFactor);
+
+        velocity.applyRestitution(Game.airRestitution * deltaTime * AirRestitutionFactor);
         controller2D.Move(velocity.current * deltaTime);
     }
 }

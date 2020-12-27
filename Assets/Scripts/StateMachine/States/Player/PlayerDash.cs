@@ -6,7 +6,6 @@ namespace Movement
     public class PlayerDash : State<Player>
     {
         private const float DashTime = 0.1f;
-        private const float DashStrength = 20f;
         private Vector2 _dashDirection;
         private float _dashEndTime;
         
@@ -21,7 +20,7 @@ namespace Movement
             _dashDirection = new Vector2(Mathf.Cos(direction), Mathf.Sin(direction));
             _dashDirection.Normalize();
             _dashEndTime = Handler.game.GameTime + DashTime;
-            Handler.velocity.current = _dashDirection * DashStrength;
+            Handler.velocity.current = _dashDirection * Handler.DashStrength;
             Handler.velocity.resting = Vector2.zero;
         }
 
@@ -46,7 +45,7 @@ namespace Movement
                 Handler.velocity.current.y = Mathf.Sin(lerpDirection) * movementVelocity;
             }
             
-            Handler.velocity.Lerp(DashStrength * 3f * deltaTime);
+            Handler.velocity.Lerp(Handler.DashStrength * 3f * deltaTime);
             Handler.controller2D.Move(Handler.velocity.current * deltaTime);
 
             if (time > _dashEndTime || Handler.velocity.current.magnitude < 1f)

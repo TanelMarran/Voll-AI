@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
 {
     public Game game;
     
-    public float movementSpeed = 5;
-    public float jumpPower = 20;
+    public float movementSpeed = 5f;
+    public float jumpPower = 20f;
+    public float DashStrength = 10f;
+    public float HitStrength = 15f;
 
     public StateMachine<Player> State;
     public PlayerGround PlayerGround;
@@ -79,11 +81,13 @@ public class Player : MonoBehaviour
     {
         if (isHitting)
         {
-            bool ballHit = ballCollider.Distance(game.Ball.Collider2D).distance <= 0f;
+            var collision = ballCollider.Distance(game.Ball.Collider2D);
+            bool ballHit = collision.distance <= 0f;
             
             if (ballHit)
             {
-                Debug.Log("Hit");
+                Debug.Log(collision.distance);
+                game.Ball.velocity.current = collision.normal * HitStrength;
             }
             
             if (Time.time > HitStateTimestamp || ballHit)
