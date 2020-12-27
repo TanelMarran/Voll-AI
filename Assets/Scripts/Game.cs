@@ -7,12 +7,13 @@ using Random = UnityEngine.Random;
 
 public class Game : MonoBehaviour
 {
-    public Player Player1;
-    public Player Player2;
+    public Player LeftPlayer;
+    public Player RightPlayer;
+    public Ball Ball;
 
     public static float maxFallSpeed = 16f;
-    public static float gravityAmount = 12f;
-    public static float airRestitution = 3f;
+    public static float gravityAmount = 20f;
+    public static float airRestitution = 10f;
 
     private float hitStopTimestamp = 0;
     public float GameSpeed = 1;

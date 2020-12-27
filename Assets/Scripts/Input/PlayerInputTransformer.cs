@@ -8,43 +8,43 @@ namespace Input
     {
         private Vector2 movement;
         private bool isJumpDown;
-        private bool isDashDown;
+        private bool isHitDown;
 
         private bool isJumpPressedThisFrame;
-        private bool isDashPressedThisFrame;
+        private bool isHitPressedThisFrame;
         
         private bool isJumpReleasedThisFrame;
-        private bool isDashReleasedThisFrame;
+        private bool isHitReleasedThisFrame;
 
         private void FixedUpdate()
         {
             isJumpPressedThisFrame = false;
-            isDashPressedThisFrame = false;
+            isHitPressedThisFrame = false;
             isJumpReleasedThisFrame = false;
-            isDashReleasedThisFrame = false;
+            isHitReleasedThisFrame = false;
         }
         
-        private void SetDashKey(bool val)
+        private void SetHitKey(bool val)
         {
-            if (!isDashDown && val)
+            if (!isHitDown && val)
             {
-                isDashPressedThisFrame = true;
+                isHitPressedThisFrame = true;
             }
-            if (isDashDown && !val)
+            if (isHitDown && !val)
             {
-                isDashReleasedThisFrame = true;
+                isHitReleasedThisFrame = true;
             }
-            isDashDown = val;
+            isHitDown = val;
         }
         
-        public void SetDashKey(float key)
+        public void SetHitKey(float key)
         {
-            SetDashKey(key > 0.5f);
+            SetHitKey(key > 0.5f);
         }
         
-        public void SetDashKey(InputAction.CallbackContext ctx)
+        public void SetHitKey(InputAction.CallbackContext ctx)
         {
-            SetDashKey(ctx.ReadValue<float>() > 0.5);
+            SetHitKey(ctx.ReadValue<float>() > 0.5);
         }
 
         private void SetJumpKey(bool val)
@@ -96,14 +96,14 @@ namespace Input
             return isJumpReleasedThisFrame;
         }
 
-        public override bool DashPressed()
+        public override bool HitPressed()
         {
-            return isDashPressedThisFrame;
+            return isHitPressedThisFrame;
         }
 
-        public override bool DashReleased()
+        public override bool HitReleased()
         {
-            return isDashReleasedThisFrame;
+            return isHitReleasedThisFrame;
         }
     }
 }

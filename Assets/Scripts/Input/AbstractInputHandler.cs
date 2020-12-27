@@ -12,7 +12,7 @@ namespace Input
         public abstract bool JumpPressed();
         public abstract bool JumpReleased();
         
-        public abstract bool DashPressed();
-        public abstract bool DashReleased();
+        public abstract bool HitPressed();
+        public abstract bool HitReleased();
     }
 }

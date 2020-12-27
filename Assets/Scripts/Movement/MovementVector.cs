@@ -21,5 +21,12 @@ namespace Movement
 
             current += toResting.normalized * Mathf.Min(amount, toResting.magnitude);
         }
+
+        public void applyRestitution(float amount)
+        {
+            Vector2 toResting = -current;
+
+            current += toResting.normalized * Mathf.Min(amount, toResting.magnitude);
+        }
     }
 }

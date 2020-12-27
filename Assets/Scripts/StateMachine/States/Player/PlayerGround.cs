@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.XR;
 
 namespace Movement
 {
     public class PlayerGround : State<Player>
     {
-        private bool _jumped;
-        private bool _dashed;
         private bool _hit;
         
         public PlayerGround(Player handler) : base(handler)
@@ -14,35 +13,24 @@ namespace Movement
 
         public override void Start()
         {
-            ResetVariables();
             Handler.velocity.resting.y = 0;
-        }
-
-        private void ResetVariables()
-        {
-            _jumped = false; 
-            _dashed = false;
-            _hit = false;
         }
 
         public override void Update()
         {
-            _jumped = Handler.Actions.Player.Jump.triggered || _jumped;
-            _dashed = Handler.Actions.Player.Dash.triggered || _dashed;
         }
 
         public override void FixedUpdate()
         {
             float deltaTime = Handler.game.GameDelta;
 
-            if (Handler.inputTransformer.JumpPressed())
+            if (Handler.inputs.JumpPressed())
             {
                 Handler.velocity.resting.y = Handler.velocity.current.y = Handler.jumpPower;
                 Handler.isJumping = true;
-                _jumped = false;
             }
 
-            Handler.velocity.resting.x = Handler.inputTransformer.Movement().x * Handler.movementSpeed;
+            Handler.velocity.resting.x = Handler.inputs.Movement().x * Handler.movementSpeed;
 
             Handler.velocity.Lerp(40f * deltaTime);
             Handler.controller2D.Move(Handler.velocity.current * deltaTime);
@@ -51,8 +39,8 @@ namespace Movement
             {
                 Handler.State.SetState(Handler.PlayerAir);
             }
-
-            ResetVariables();
+            
+            Handler.HitBehaviour();
         }
     }
 }

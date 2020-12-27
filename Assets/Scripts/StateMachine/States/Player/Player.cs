@@ -23,20 +23,23 @@ public class Player : MonoBehaviour
     public float gravity = -40;
     public MovementVector velocity;
     public bool isJumping = false;
-    [HideInInspector] public PlayerInputTransformer inputTransformer;
 
-    [HideInInspector] public Controller2D controller2D;
-    [NonSerialized] public CircleCollider2D _ballCollider;
+    [HideInInspector] public bool isHitting = false;
+    public float HitActiveTime = 10f;
+    public float HitCooldownTime = 2f;
+    [HideInInspector] public float HitStateTimestamp = 0f;
     
-    public LineRenderer Line;
+    [HideInInspector] public PlayerInputTransformer inputs;
+    [HideInInspector] public Controller2D controller2D;
+    [HideInInspector] public CircleCollider2D ballCollider;
 
     private void Start()
     {
         State = new StateMachine<Player>();
         InitializeStates();
         controller2D = GetComponent<Controller2D>();
-        _ballCollider = GetComponent<CircleCollider2D>();
-        inputTransformer = GetComponent<PlayerInputTransformer>();
+        ballCollider = GetComponent<CircleCollider2D>();
+        inputs = GetComponent<PlayerInputTransformer>();
     }
 
     private void Awake()
@@ -70,5 +73,32 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         State.FixedUpdate();
+    }
+
+    public void HitBehaviour()
+    {
+        if (isHitting)
+        {
+            bool ballHit = ballCollider.Distance(game.Ball.Collider2D).distance <= 0f;
+            
+            if (ballHit)
+            {
+                Debug.Log("Hit");
+            }
+            
+            if (Time.time > HitStateTimestamp || ballHit)
+            {
+                isHitting = false;
+                HitStateTimestamp = Time.time + HitCooldownTime;
+            }
+        }
+        else
+        {
+            if (inputs.HitPressed() && Time.time > HitStateTimestamp)
+            {
+                isHitting = true;
+                HitStateTimestamp = Time.time + HitActiveTime;
+            }
+        }
     }
 }

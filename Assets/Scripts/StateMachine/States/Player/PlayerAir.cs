@@ -4,20 +4,13 @@ using UnityEngine.XR;
 
 public class PlayerAir : State<Player>
 {
-    private bool _dashed;
     public PlayerAir(Player handler) : base(handler)
     {
     }
 
-    private void ResetVariables()
-    {
-        _dashed = false;
-    }
-    
     public override void Start()
     {
-        ResetVariables();
-        if (Handler.isJumping && Handler.inputTransformer.JumpReleased())
+        if (Handler.isJumping && Handler.inputs.JumpReleased())
         {
             Handler.isJumping = false;
             Handler.velocity.current.y *= 0.5f;
@@ -26,7 +19,6 @@ public class PlayerAir : State<Player>
 
     public override void Update()
     {
-        _dashed = Handler.Actions.Player.Dash.triggered || _dashed;
     }
 
     public override void FixedUpdate()
@@ -38,16 +30,20 @@ public class PlayerAir : State<Player>
             Handler.isJumping = false;
         }
         
-        if (Handler.isJumping && Handler.inputTransformer.JumpReleased())
+        if (Handler.isJumping && Handler.inputs.JumpReleased())
         {
             Handler.isJumping = false;
             Handler.velocity.current.y *= 0.5f;
         }
         
-        Handler.velocity.resting.x = Handler.inputTransformer.Movement().x * Handler.movementSpeed;
-        Handler.velocity.resting.y = Handler.velocity.current.y += Handler.gravity * deltaTime;
+        Handler.velocity.resting.x = Handler.inputs.Movement().x * Handler.movementSpeed;
+        Handler.velocity.resting.y = Handler.velocity.current.y = Mathf.Max(-Game.maxFallSpeed, Handler.velocity.current.y - Game.gravityAmount * deltaTime);
 
-        Handler.velocity.Lerp(40f * deltaTime);
+        if (Handler.velocity.resting.x != 0)
+        {
+            Handler.velocity.Lerp(20f * deltaTime);
+        }
+        Handler.velocity.applyRestitution(Game.airRestitution * deltaTime);
         Handler.controller2D.Move(Handler.velocity.current * deltaTime);
         
         Handler.velocity.current.y = Handler.controller2D.collisions.above || Handler.controller2D.collisions.below ? 0 : Handler.velocity.current.y;
@@ -57,11 +53,11 @@ public class PlayerAir : State<Player>
             Handler.State.SetState(Handler.PlayerGround);
         }
         
-        if (Handler.inputTransformer.JumpPressed())
+        if (Handler.inputs.JumpPressed())
         {
             Handler.State.SetState(Handler.PlayerDash);
         }
         
-        ResetVariables();
+        Handler.HitBehaviour();
     }
 }

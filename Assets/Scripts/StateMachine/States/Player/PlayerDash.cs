@@ -16,7 +16,7 @@ namespace Movement
 
         public override void Start()
         {
-            _dashDirection = Handler.inputTransformer.Movement();
+            _dashDirection = Handler.inputs.Movement();
             float direction = Mathf.Round(Vector2.SignedAngle(Vector2.right, _dashDirection) / 45f) * 45f * Mathf.Deg2Rad;
             _dashDirection = new Vector2(Mathf.Cos(direction), Mathf.Sin(direction));
             _dashDirection.Normalize();
@@ -32,7 +32,7 @@ namespace Movement
             
             if (Handler.Actions.Player.Movement.ReadValue<Vector2>().magnitude != 0)
             {
-                float inputDirection = Vector2.SignedAngle(Vector2.right, Handler.inputTransformer.Movement());
+                float inputDirection = Vector2.SignedAngle(Vector2.right, Handler.inputs.Movement());
                 float movementDirection = Vector2.SignedAngle(Vector2.right, Handler.velocity.current);
                 float lerpDirection = Mathf.Deg2Rad * movementDirection;
                 if (inputDirection - movementDirection != 0)
@@ -53,6 +53,8 @@ namespace Movement
             {
                 Handler.State.SetState(Handler.PlayerAir);
             }
+            
+            Handler.HitBehaviour();
         }
     }
 }

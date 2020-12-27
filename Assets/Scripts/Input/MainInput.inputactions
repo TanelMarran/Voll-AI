@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Dash",
+                    "name": "Hit",
                     "type": "Value",
                     "id": "7f2ece42-e69a-41e0-b39e-2a534469c72c",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Dash",
+                    "action": "Hit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -71,7 +71,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Dash",
+                    "action": "Hit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
