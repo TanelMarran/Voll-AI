@@ -31,4 +31,9 @@ public class StateMachine<T>
     {
         return _state.ToString();
     }
+
+    public int getCurrentIndex()
+    {
+        return _state.getIndex();
+    }
 }

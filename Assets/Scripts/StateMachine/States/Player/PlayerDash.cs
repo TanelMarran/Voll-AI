@@ -9,7 +9,7 @@ namespace Movement
         private Vector2 _dashDirection;
         private float _dashEndTime;
         
-        public PlayerDash(Player handler) : base(handler)
+        public PlayerDash(Player handler, int index) : base(handler, index)
         {
         }
 

@@ -6,10 +6,12 @@ namespace Movement
     public abstract class State<T>
     {
         public T Handler;
+        public int Index;
 
-        protected State(T handler)
+        protected State(T handler, int index)
         {
-            this.Handler = handler;
+            Handler = handler;
+            Index = index;
         }
 
         public virtual void Start(){
@@ -29,6 +31,11 @@ namespace Movement
         public override string ToString()
         {
             return this.GetType().Name;
+        }
+
+        public int getIndex()
+        {
+            return Index;
         }
     }
 }

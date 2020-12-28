@@ -4,7 +4,7 @@ using UnityEngine.XR;
 
 public class PlayerAir : State<Player>
 {
-    public PlayerAir(Player handler) : base(handler)
+    public PlayerAir(Player handler, int index) : base(handler, index)
     {
     }
 

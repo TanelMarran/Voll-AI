@@ -7,7 +7,7 @@ namespace Movement
     {
         private bool _hit;
         
-        public PlayerGround(Player handler) : base(handler)
+        public PlayerGround(Player handler, int index) : base(handler, index)
         {
         }
 

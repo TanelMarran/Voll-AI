@@ -26,12 +26,26 @@ public class Ball : MonoBehaviour
     {
         float deltaTime = game.GameDelta;
 
+        if (controller2D.collisions.below && transform.localPosition.y < 2)
+        {
+            if (transform.localPosition.x < 0)
+            {
+                game.rightPoint++;
+                game.startNewRound(false);
+            }
+            else
+            {
+                game.leftPoint++;
+                game.startNewRound(true);
+            }
+        }
+        
         if (controller2D.collisions.below || controller2D.collisions.above)
         {
             velocity.current.y *= -0.9f;
             controller2D.collisions.Reset();
         }
-        
+
         if (controller2D.collisions.left || controller2D.collisions.right)
         {
             velocity.current.x *= -0.9f;

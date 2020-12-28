@@ -61,9 +61,9 @@ public class Player : MonoBehaviour
 
     private void InitializeStates()
     {
-        PlayerGround = new PlayerGround(this);
-        PlayerAir = new PlayerAir(this);
-        PlayerDash = new PlayerDash(this);
+        PlayerGround = new PlayerGround(this, 0);
+        PlayerAir = new PlayerAir(this, 1);
+        PlayerDash = new PlayerDash(this, 2);
         State.SetState(PlayerGround);
     }
 
@@ -86,8 +86,8 @@ public class Player : MonoBehaviour
             
             if (ballHit)
             {
-                Debug.Log(collision.distance);
-                game.Ball.velocity.current = collision.normal * HitStrength;
+                var factor = Mathf.Clamp(Mathf.Abs(collision.distance) / ballCollider.radius + 0.5f, 0, 1);
+                game.Ball.velocity.current = collision.normal * (HitStrength * factor);
             }
             
             if (Time.time > HitStateTimestamp || ballHit)
