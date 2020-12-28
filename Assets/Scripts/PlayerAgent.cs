@@ -14,6 +14,14 @@ public class PlayerAgent : Agent
 
     private int _selfAccountedPoints = 0;
     private int _opponentAccountedPoints = 0;
+
+    private bool _selfTouchedBall = false;
+
+    private const float RewardTouch = .5f;
+    private const float RewardWin = 3f;
+    private const float RewardPoint = 1f;
+
+    private const int WinningScore = 5;
     
     private void Start()
     {
@@ -21,6 +29,16 @@ public class PlayerAgent : Agent
         _opponent = isLeftPlayer ? _self.game.RightPlayer : _self.game.LeftPlayer;
         _ball = _self.game.Ball;
         _xSide = isLeftPlayer ? new Vector2(-1, 1) : new Vector2(1, 1);
+        
+        _ball.OnBallTouched.AddListener(OnBallTouch);
+    }
+
+    private void OnBallTouch(Player player)
+    {
+        if (player == _self)
+        {
+            _selfTouchedBall = true;
+        }
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -47,55 +65,61 @@ public class PlayerAgent : Agent
         _self.inputs.SetJumpKey(vectorAction[2] == 0 ? 1 : 0);
         _self.inputs.SetHitKey(vectorAction[3] == 0 ? 1 : 0);
 
+        if (_selfTouchedBall)
+        {
+            AddReward(RewardTouch);
+            _selfTouchedBall = false;
+        }
+
         if (isLeftPlayer)
         {
-            if (_self.game.leftPoint > 5)
+            if (_self.game.leftPoint >= WinningScore)
             {
-                AddReward(1f);
+                AddReward(RewardWin);
                 EndEpisode();
             }
         
-            if (_opponent.game.rightPoint > 5)
+            if (_opponent.game.rightPoint >= WinningScore)
             {
-                AddReward(-1f);
+                AddReward(-RewardWin);
                 EndEpisode();
             }
             
             if (_self.game.leftPoint > _selfAccountedPoints)
             {
-                AddReward(1f);
+                AddReward(RewardPoint * 2);
                 _selfAccountedPoints++;
             }
             
             if (_self.game.rightPoint > _opponentAccountedPoints)
             {
-                AddReward(-1f);
+                AddReward(-RewardPoint);
                 _opponentAccountedPoints++;
             }
         }
         else
         {
-            if (_self.game.rightPoint > 5)
+            if (_self.game.rightPoint >= WinningScore)
             {
-                AddReward(1f);
+                AddReward(RewardWin);
                 EndEpisode();
             }
         
-            if (_opponent.game.leftPoint > 5)
+            if (_opponent.game.leftPoint >= WinningScore)
             {
-                AddReward(-1f);
+                AddReward(-RewardWin);
                 EndEpisode();
             }
             
             if (_self.game.rightPoint > _selfAccountedPoints)
             {
-                AddReward(1f);
+                AddReward(RewardPoint * 2);
                 _selfAccountedPoints++;
             }
             
             if (_self.game.leftPoint > _opponentAccountedPoints)
             {
-                AddReward(-1f);
+                AddReward(-RewardPoint);
                 _opponentAccountedPoints++;
             }
         }

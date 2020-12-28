@@ -1,7 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Movement;
 using UnityEngine;
+using UnityEngine.Events;
+
+public class PlayerEvent : UnityEvent<Player> {}
 
 [RequireComponent(typeof(Controller2D))]
 public class Ball : MonoBehaviour
@@ -13,7 +17,17 @@ public class Ball : MonoBehaviour
     [HideInInspector] public Controller2D controller2D;
 
     [HideInInspector] public CircleCollider2D Collider2D;
-    
+
+    public PlayerEvent OnBallTouched;
+
+    private void Awake()
+    {
+        if (OnBallTouched == null)
+        {
+            OnBallTouched = new PlayerEvent();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,13 +44,11 @@ public class Ball : MonoBehaviour
         {
             if (transform.localPosition.x < 0)
             {
-                game.rightPoint++;
-                game.startNewRound(false);
+                game.AddRightPoint(1);
             }
             else
             {
-                game.leftPoint++;
-                game.startNewRound(true);
+                game.AddLeftPoint(1);
             }
         }
         

@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
             {
                 var factor = Mathf.Clamp(Mathf.Abs(collision.distance) / ballCollider.radius + 0.5f, 0, 1);
                 game.Ball.velocity.current = collision.normal * (HitStrength * factor);
+                game.Ball.OnBallTouched.Invoke(this);
             }
             
             if (Time.time > HitStateTimestamp || ballHit)

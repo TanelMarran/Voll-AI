@@ -1,7 +1,11 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
+
+public class BoolEvent : UnityEvent<bool> {}
 
 public class Game : MonoBehaviour
 {
@@ -16,11 +20,18 @@ public class Game : MonoBehaviour
     public bool isLeftServing = true;
 
     private float hitStopTimestamp = 0;
-    public float GameSpeed = 1;
+    [HideInInspector] public float GameSpeed = 1;
     private float time = 0;
 
     public int leftPoint = 0;
     public int rightPoint = 0;
+
+    [Tooltip("If true, points will not be awarded for missing serves")]
+    public bool noServeMistakePoints = false;
+
+    public BoolEvent OnNetCross;
+    private bool hasServed;
+    private float ballPreviousX;
 
     private Vector3 leftPlayerStart;
     private Vector3 rightPlayerStart;
@@ -33,6 +44,14 @@ public class Game : MonoBehaviour
 
     private static readonly Vector3 leftMirror = new Vector3(-1, 1, 1);
 
+    private void Awake()
+    {
+        if (OnNetCross == null)
+        {
+            OnNetCross = new BoolEvent();
+        }
+    }
+
     private void Start()
     {
         _text = GetComponentInChildren<TextMeshProUGUI>();
@@ -40,7 +59,7 @@ public class Game : MonoBehaviour
         leftPlayerStart = LeftPlayer.transform.localPosition;
         rightPlayerStart = RightPlayer.transform.localPosition;
         ballStart = Ball.transform.localPosition;
-        
+
         startNewRound(true);
     }
 
@@ -50,6 +69,23 @@ public class Game : MonoBehaviour
         time += GameDelta;
 
         _text.text = leftPoint + "-" + rightPoint;
+
+        CheckNetCross();
+    }
+
+    private void CheckNetCross()
+    {
+        float ballCurrentX = Ball.transform.localPosition.x;
+        bool crossedToRight = ballPreviousX < 0 && ballCurrentX >= 0;
+        bool crossedToLeft = ballPreviousX > 0 && ballCurrentX <= 0;
+
+        if (crossedToRight || crossedToLeft)
+        {
+            hasServed = true;
+            OnNetCross.Invoke(crossedToRight);
+        }
+        
+        ballPreviousX = Ball.transform.localPosition.x;
     }
 
     public void startNewRound(bool leftScored)
@@ -57,12 +93,14 @@ public class Game : MonoBehaviour
         UpdateServingPlayer(leftScored);
         resetPlayers();
         resetBall();
+        hasServed = false;
     }
 
     private void resetBall()
     {
         Ball.transform.localPosition = isLeftServing ? Vector3.Scale(ballStart, leftMirror) : ballStart;
         Ball.velocity.current = Vector2.zero;
+        ballPreviousX = Ball.transform.localPosition.x;
     }
 
     private void resetPlayers()
@@ -106,5 +144,17 @@ public class Game : MonoBehaviour
     public void applyHitstop(float _time)
     {
         hitStopTimestamp = Time.time + _time;
+    }
+
+    public void AddRightPoint(int addedPoints)
+    {
+        rightPoint += hasServed ? addedPoints : 0;
+        startNewRound(false);
+    }
+    
+    public void AddLeftPoint(int addedPoints)
+    {
+        leftPoint += hasServed ? addedPoints : 0;
+        startNewRound(true);
     }
 }
