@@ -16,12 +16,16 @@ public class PlayerAgent : Agent
     private int _opponentAccountedPoints = 0;
 
     private bool _selfTouchedBall = false;
+    private bool _selfNetCross = false;
 
-    private const float RewardTouch = .5f;
-    private const float RewardWin = 3f;
-    private const float RewardPoint = 1f;
+    private const float RewardNetCross = 0;//1f;
+    private const float RewardTouch = 0;//.1f;
+    private const float RewardWin = 1f;
+    private const float RewardPoint = 0;//.3f;
+    
+    private static Vector2 NormalizeVector = new Vector2(1f / 8.5f, 1f / 10f);
 
-    private const int WinningScore = 5;
+    private const int WinningScore = 1;
     
     private void Start()
     {
@@ -31,6 +35,7 @@ public class PlayerAgent : Agent
         _xSide = isLeftPlayer ? new Vector2(-1, 1) : new Vector2(1, 1);
         
         _ball.OnBallTouched.AddListener(OnBallTouch);
+        _ball.game.OnNetCross.AddListener(OnNetCross);
     }
 
     private void OnBallTouch(Player player)
@@ -40,22 +45,32 @@ public class PlayerAgent : Agent
             _selfTouchedBall = true;
         }
     }
+    
+    private void OnNetCross(bool crossedToRight)
+    {
+        if (crossedToRight && isLeftPlayer || !crossedToRight && !isLeftPlayer)
+        {
+            _selfNetCross = true;
+        }
+    }
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        Vector2 scaler = Vector2.Scale(NormalizeVector, _xSide);
+        
         // Self
-        sensor.AddObservation(Vector2.Scale(_self.transform.position, _xSide));
-        sensor.AddObservation(Vector2.Scale(_self.velocity.current, _xSide));
+        sensor.AddObservation(Vector2.Scale(_self.transform.position, scaler));
+        sensor.AddObservation(Vector2.Scale(_self.velocity.current, scaler));
         sensor.AddObservation(_self.State.getCurrentIndex());
 
         // Opponent
-        sensor.AddObservation(Vector2.Scale(_opponent.transform.position, _xSide));
-        sensor.AddObservation(Vector2.Scale(_opponent.velocity.current, _xSide));
+        sensor.AddObservation(Vector2.Scale(_opponent.transform.position, scaler));
+        sensor.AddObservation(Vector2.Scale(_opponent.velocity.current, scaler));
         sensor.AddObservation(_opponent.State.getCurrentIndex());
         
         // Ball
-        sensor.AddObservation(Vector2.Scale(_ball.transform.position, _xSide));
-        sensor.AddObservation(Vector2.Scale(_ball.velocity.current, _xSide));
+        sensor.AddObservation(Vector2.Scale(_ball.transform.position, scaler));
+        sensor.AddObservation(Vector2.Scale(_ball.velocity.current, scaler));
     }
 
     public override void OnActionReceived(float[] vectorAction)
@@ -69,6 +84,12 @@ public class PlayerAgent : Agent
         {
             AddReward(RewardTouch);
             _selfTouchedBall = false;
+        }
+        
+        if (_selfNetCross)
+        {
+            AddReward(RewardNetCross);
+            _selfNetCross = false;
         }
 
         if (isLeftPlayer)
@@ -87,7 +108,7 @@ public class PlayerAgent : Agent
             
             if (_self.game.leftPoint > _selfAccountedPoints)
             {
-                AddReward(RewardPoint * 2);
+                AddReward(RewardPoint);
                 _selfAccountedPoints++;
             }
             
@@ -113,7 +134,7 @@ public class PlayerAgent : Agent
             
             if (_self.game.rightPoint > _selfAccountedPoints)
             {
-                AddReward(RewardPoint * 2);
+                AddReward(RewardPoint);
                 _selfAccountedPoints++;
             }
             

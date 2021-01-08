@@ -99,7 +99,9 @@ public class Game : MonoBehaviour
     private void resetBall()
     {
         Ball.transform.localPosition = isLeftServing ? Vector3.Scale(ballStart, leftMirror) : ballStart;
+        Ball.controller2D.collisions.Reset();
         Ball.velocity.current = Vector2.zero;
+        Ball.velocity.resting = Vector2.zero;
         ballPreviousX = Ball.transform.localPosition.x;
     }
 

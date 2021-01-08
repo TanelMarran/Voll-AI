@@ -1,3 +1,5 @@
 ﻿.\python-envs\mlagents\Scripts\activate
 
-mlagents-learn .\config\playerbehaviour_config.yaml --run-id=15dec
+mlagents-learn .\config\playerbehaviour_config.yaml --run-id=31dec --resume
+
+tensorboard --logdir results --port 6006

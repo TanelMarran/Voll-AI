@@ -40,18 +40,22 @@ public class Ball : MonoBehaviour
     {
         float deltaTime = game.GameDelta;
 
-        if (controller2D.collisions.below && transform.localPosition.y < 2)
+        if (controller2D.collisions.below)
         {
-            if (transform.localPosition.x < 0)
+            if (transform.localPosition.y < 2)
             {
-                game.AddRightPoint(1);
-            }
-            else
-            {
-                game.AddLeftPoint(1);
+                if (transform.localPosition.x < 0)
+                {
+                    game.AddRightPoint(1);
+                }
+                else
+                {
+                    game.AddLeftPoint(1);
+                }
+                return;
             }
         }
-        
+
         if (controller2D.collisions.below || controller2D.collisions.above)
         {
             velocity.current.y *= -0.9f;
