@@ -53,8 +53,9 @@ public class PlayerAir : State<Player>
             Handler.State.SetState(Handler.PlayerGround);
         }
         
-        if (Handler.inputs.JumpPressed())
+        if (Handler.inputs.JumpPressed() && Handler.currentDashes > 0)
         {
+            Handler.currentDashes--;
             Handler.State.SetState(Handler.PlayerDash);
         }
         

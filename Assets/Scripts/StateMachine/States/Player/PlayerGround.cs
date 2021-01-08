@@ -14,6 +14,7 @@ namespace Movement
         public override void Start()
         {
             Handler.velocity.resting.y = 0;
+            Handler.currentDashes = Handler.totalDashes;
         }
 
         public override void Update()

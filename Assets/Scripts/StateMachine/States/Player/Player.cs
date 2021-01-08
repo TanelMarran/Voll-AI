@@ -21,7 +21,9 @@ public class Player : MonoBehaviour
     public PlayerDash PlayerDash;
     public MainInput Actions;
     public ContactFilter2D ballFilter;
-    
+    public int totalDashes = 1;
+    [HideInInspector] public int currentDashes;
+
     public float gravity = -40;
     public MovementVector velocity;
     public bool isJumping = false;
