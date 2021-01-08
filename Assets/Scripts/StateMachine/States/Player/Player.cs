@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         if (isHitting)
         {
             var collision = ballCollider.Distance(game.Ball.Collider2D);
-            bool ballHit = collision.distance <= 0f;
+            bool ballHit = collision.distance <= 0f && (int)Mathf.Sign(transform.localPosition.x) == (int)Mathf.Sign(game.Ball.transform.localPosition.x);
             
             if (ballHit)
             {

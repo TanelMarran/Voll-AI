@@ -54,6 +54,9 @@ public class Ball : MonoBehaviour
                 }
                 return;
             }
+
+            var localPosition = transform.localPosition;
+            velocity.current += new Vector2(localPosition.x * 10f, -localPosition.y);
         }
 
         if (controller2D.collisions.below || controller2D.collisions.above)
