@@ -1030,6 +1030,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8038999481955521790}
     m_Modifications:
+    - target: {fileID: 4747065282111473097, guid: 62408ea7ef974e54eb287ec6bb2f5453,
+        type: 3}
+      propertyPath: DecisionPeriod
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8186901154727408188, guid: 62408ea7ef974e54eb287ec6bb2f5453,
         type: 3}
       propertyPath: m_Name
@@ -1100,6 +1105,21 @@ PrefabInstance:
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8186901154727408581, guid: 62408ea7ef974e54eb287ec6bb2f5453,
+        type: 3}
+      propertyPath: _self
+      value: 
+      objectReference: {fileID: 8038999481532819771}
+    - target: {fileID: 8186901154727408581, guid: 62408ea7ef974e54eb287ec6bb2f5453,
+        type: 3}
+      propertyPath: _opponent
+      value: 
+      objectReference: {fileID: 2165655648661036856}
+    - target: {fileID: 8186901154727408581, guid: 62408ea7ef974e54eb287ec6bb2f5453,
+        type: 3}
+      propertyPath: _ball
+      value: 
+      objectReference: {fileID: 8038999483028085202}
     - target: {fileID: 8186901154727408582, guid: 62408ea7ef974e54eb287ec6bb2f5453,
         type: 3}
       propertyPath: m_Model
@@ -1133,6 +1153,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8038999481955521790}
     m_Modifications:
+    - target: {fileID: 4747065282111473097, guid: 62408ea7ef974e54eb287ec6bb2f5453,
+        type: 3}
+      propertyPath: DecisionPeriod
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8186901154727408188, guid: 62408ea7ef974e54eb287ec6bb2f5453,
         type: 3}
       propertyPath: m_Name
@@ -1218,6 +1243,21 @@ PrefabInstance:
       propertyPath: isLeftPlayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8186901154727408581, guid: 62408ea7ef974e54eb287ec6bb2f5453,
+        type: 3}
+      propertyPath: _self
+      value: 
+      objectReference: {fileID: 2165655648661036856}
+    - target: {fileID: 8186901154727408581, guid: 62408ea7ef974e54eb287ec6bb2f5453,
+        type: 3}
+      propertyPath: _opponent
+      value: 
+      objectReference: {fileID: 8038999481532819771}
+    - target: {fileID: 8186901154727408581, guid: 62408ea7ef974e54eb287ec6bb2f5453,
+        type: 3}
+      propertyPath: _ball
+      value: 
+      objectReference: {fileID: 8038999483028085202}
     - target: {fileID: 8186901154727408582, guid: 62408ea7ef974e54eb287ec6bb2f5453,
         type: 3}
       propertyPath: TeamId

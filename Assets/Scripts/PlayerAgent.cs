@@ -6,24 +6,29 @@ public class PlayerAgent : Agent
 {
     public bool isLeftPlayer;
 
-    private Player _self;
-    private Player _opponent;
-    private Ball _ball;
+    public Player _self;
+    public Player _opponent;
+    public Ball _ball;
 
-    private Vector2 _xSide;
+    public Vector2 _xSide;
 
     private int _selfAccountedPoints = 0;
     private int _opponentAccountedPoints = 0;
 
     private bool _selfTouchedBall = false;
     private bool _selfNetCross = false;
+    private bool _selfMissedBall = false;
 
-    private const float RewardNetCross = 0;//1f;
-    private const float RewardTouch = 0;//.1f;
+    private const float RewardNetCross = 0f;
+    private const float RewardTouch = 0f;
     private const float RewardWin = 1f;
-    private const float RewardPoint = 0;//.3f;
+    private const float RewardPoint = 0f;
     
-    private static Vector2 NormalizeVector = new Vector2(1f / 8.5f, 1f / 10f);
+    private const float PenaltyBallMiss = 0f;
+    private const float PenaltyPointLossed = 0;
+    private const float PenaltyGameLossed = 1f;
+
+    public static Vector2 NormalizeVector = new Vector2(1f / 8.5f, 1f / 10f);
 
     private const int WinningScore = 1;
     
@@ -36,6 +41,7 @@ public class PlayerAgent : Agent
         
         _ball.OnBallTouched.AddListener(OnBallTouch);
         _ball.game.OnNetCross.AddListener(OnNetCross);
+        _self.OnBallMissed.AddListener(OnBallMiss);
     }
 
     private void OnBallTouch(Player player)
@@ -44,6 +50,11 @@ public class PlayerAgent : Agent
         {
             _selfTouchedBall = true;
         }
+    }
+    
+    private void OnBallMiss()
+    {
+        _selfMissedBall = true;
     }
     
     private void OnNetCross(bool crossedToRight)
@@ -59,17 +70,17 @@ public class PlayerAgent : Agent
         Vector2 scaler = Vector2.Scale(NormalizeVector, _xSide);
         
         // Self
-        sensor.AddObservation(Vector2.Scale(_self.transform.position, scaler));
+        sensor.AddObservation(Vector2.Scale(_self.transform.localPosition, scaler));
         sensor.AddObservation(Vector2.Scale(_self.velocity.current, scaler));
-        sensor.AddObservation(_self.State.getCurrentIndex());
+        sensor.AddObservation(_self.currentDashes);
 
         // Opponent
-        sensor.AddObservation(Vector2.Scale(_opponent.transform.position, scaler));
+        sensor.AddObservation(Vector2.Scale(_opponent.transform.localPosition, scaler));
         sensor.AddObservation(Vector2.Scale(_opponent.velocity.current, scaler));
-        sensor.AddObservation(_opponent.State.getCurrentIndex());
+        sensor.AddObservation(_opponent.currentDashes);
         
         // Ball
-        sensor.AddObservation(Vector2.Scale(_ball.transform.position, scaler));
+        sensor.AddObservation(Vector2.Scale(_ball.transform.localPosition, scaler));
         sensor.AddObservation(Vector2.Scale(_ball.velocity.current, scaler));
     }
 
@@ -91,6 +102,12 @@ public class PlayerAgent : Agent
             AddReward(RewardNetCross);
             _selfNetCross = false;
         }
+        
+        if (_selfMissedBall)
+        {
+            AddReward(-PenaltyBallMiss);
+            _selfMissedBall = false;
+        }
 
         if (isLeftPlayer)
         {
@@ -102,7 +119,7 @@ public class PlayerAgent : Agent
         
             if (_opponent.game.rightPoint >= WinningScore)
             {
-                AddReward(-RewardWin);
+                AddReward(-PenaltyGameLossed);
                 EndEpisode();
             }
             
@@ -114,7 +131,7 @@ public class PlayerAgent : Agent
             
             if (_self.game.rightPoint > _opponentAccountedPoints)
             {
-                AddReward(-RewardPoint);
+                AddReward(-PenaltyPointLossed);
                 _opponentAccountedPoints++;
             }
         }
@@ -128,7 +145,7 @@ public class PlayerAgent : Agent
         
             if (_opponent.game.leftPoint >= WinningScore)
             {
-                AddReward(-RewardWin);
+                AddReward(-PenaltyGameLossed);
                 EndEpisode();
             }
             
@@ -140,7 +157,7 @@ public class PlayerAgent : Agent
             
             if (_self.game.leftPoint > _opponentAccountedPoints)
             {
-                AddReward(-RewardPoint);
+                AddReward(-PenaltyPointLossed);
                 _opponentAccountedPoints++;
             }
         }

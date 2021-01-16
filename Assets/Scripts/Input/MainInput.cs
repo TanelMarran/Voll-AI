@@ -20,7 +20,7 @@ public class @MainInput : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""09c2b75c-3fce-44e8-b893-2c80d6739165"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

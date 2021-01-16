@@ -2,6 +2,7 @@
 using Input;
 using Movement;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Controller2D))]
@@ -36,6 +37,8 @@ public class Player : MonoBehaviour
     [HideInInspector] public PlayerInputTransformer inputs;
     [HideInInspector] public Controller2D controller2D;
     [HideInInspector] public CircleCollider2D ballCollider;
+    
+    public UnityEvent OnBallMissed;
 
     private void Start()
     {
@@ -92,9 +95,15 @@ public class Player : MonoBehaviour
                 game.Ball.velocity.current = collision.normal * (HitStrength * factor);
                 game.Ball.OnBallTouched.Invoke(this);
             }
+
+            var overTime = Time.time > HitStateTimestamp;
             
-            if (Time.time > HitStateTimestamp || ballHit)
+            if (overTime || ballHit)
             {
+                if (overTime)
+                {
+                    OnBallMissed.Invoke();
+                }
                 isHitting = false;
                 HitStateTimestamp = Time.time + HitCooldownTime;
             }
