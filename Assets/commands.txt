@@ -1,5 +1,6 @@
 ﻿.\python-envs\mlagents\Scripts\activate
+.\python-envs\VollAI\Scripts\activate
 
-mlagents-learn .\config\playerbehaviour_config.yaml --run-id=14jan --resume
+mlagents-learn .\config\playerbehaviour_config.yaml --run-id=22jan --resume
 
 tensorboard --logdir results --port 6006

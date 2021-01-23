@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public bool isHitting = false;
     public float HitActiveTime = 10f;
-    public float HitCooldownTime = 2f;
+    public float HitCooldownTime = 4f;
     [HideInInspector] public float HitStateTimestamp = 0f;
     
     [HideInInspector] public PlayerInputTransformer inputs;

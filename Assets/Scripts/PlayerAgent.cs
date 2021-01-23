@@ -113,13 +113,13 @@ public class PlayerAgent : Agent
         {
             if (_self.game.leftPoint >= WinningScore)
             {
-                AddReward(RewardWin);
+                SetReward(RewardWin);
                 EndEpisode();
             }
         
             if (_opponent.game.rightPoint >= WinningScore)
             {
-                AddReward(-PenaltyGameLossed);
+                SetReward(-PenaltyGameLossed);
                 EndEpisode();
             }
             
@@ -139,13 +139,13 @@ public class PlayerAgent : Agent
         {
             if (_self.game.rightPoint >= WinningScore)
             {
-                AddReward(RewardWin);
+                SetReward(RewardWin);
                 EndEpisode();
             }
         
             if (_opponent.game.leftPoint >= WinningScore)
             {
-                AddReward(-PenaltyGameLossed);
+                SetReward(-PenaltyGameLossed);
                 EndEpisode();
             }
             
