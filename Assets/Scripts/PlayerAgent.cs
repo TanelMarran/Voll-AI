@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Unity.MLAgents;
+using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 
 public class PlayerAgent : Agent
@@ -19,18 +20,18 @@ public class PlayerAgent : Agent
     private bool _selfNetCross = false;
     private bool _selfMissedBall = false;
 
-    private const float RewardNetCross = 0f;
-    private const float RewardTouch = 0f;
-    private const float RewardWin = 1f;
-    private const float RewardPoint = 0f;
+    private const float RewardNetCross = 0.2f;
+    private const float RewardTouch = 0.033f;
+    private const float RewardWin = 0f;
+    private const float RewardPoint = 1f;
     
-    private const float PenaltyBallMiss = 0f;
-    private const float PenaltyPointLossed = 0;
-    private const float PenaltyGameLossed = 1f;
+    private const float PenaltyBallMiss = 0.001f;
+    private const float PenaltyPointLossed = 1f;
+    private const float PenaltyGameLossed = 0f;
 
     public static Vector2 NormalizeVector = new Vector2(1f / 8.5f, 1f / 10f);
 
-    private const int WinningScore = 1;
+    private const int WinningScore = 10;
     
     private void Start()
     {
@@ -74,23 +75,31 @@ public class PlayerAgent : Agent
         sensor.AddObservation(Vector2.Scale(_self.velocity.current, scaler));
         sensor.AddObservation(_self.currentDashes);
 
-        // Opponent
+        /*/ Opponent
         sensor.AddObservation(Vector2.Scale(_opponent.transform.localPosition, scaler));
         sensor.AddObservation(Vector2.Scale(_opponent.velocity.current, scaler));
         sensor.AddObservation(_opponent.currentDashes);
+        //*/
         
         // Ball
         sensor.AddObservation(Vector2.Scale(_ball.transform.localPosition, scaler));
         sensor.AddObservation(Vector2.Scale(_ball.velocity.current, scaler));
     }
 
-    public override void OnActionReceived(float[] vectorAction)
+    public override void OnActionReceived(ActionBuffers actions)
     {
-        Vector2 _movement = Vector2.Scale(new Vector2(vectorAction[0] == 0 ? 0 : vectorAction[0] == 1 ? -1 : 1 , vectorAction[1] == 0 ? 0 : vectorAction[1] == 1 ? -1 : 1), _xSide);
-        _self.inputs.SetMovementKey(_movement);
-        _self.inputs.SetJumpKey(vectorAction[2] == 0 ? 1 : 0);
-        _self.inputs.SetHitKey(vectorAction[3] == 0 ? 1 : 0);
+        var inputs = actions.DiscreteActions;
+        
+        Vector2 movement = Vector2.Scale(new Vector2(inputs[0] == 0 ? 0 : inputs[0] == 1 ? -1 : 1 , inputs[1] == 0 ? 0 : inputs[1] == 1 ? -1 : 1), _xSide);
+        _self.inputs.SetMovementKey(movement);
+        _self.inputs.SetJumpKey(inputs[2] == 0 ? 1 : 0);
+        _self.inputs.SetHitKey(inputs[3] == 0 ? 1 : 0);
 
+        AssignRewards();
+    }
+
+    public void AssignRewards()
+    {
         if (_selfTouchedBall)
         {
             AddReward(RewardTouch);

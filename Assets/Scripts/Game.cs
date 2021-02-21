@@ -28,6 +28,8 @@ public class Game : MonoBehaviour
 
     [Tooltip("If true, points will not be awarded for missing serves")]
     public bool noServeMistakePoints = false;
+    public bool noRightPlayer = false;
+    public Vector2 autoServeRange;
 
     public BoolEvent OnNetCross;
     private bool hasServed;
@@ -102,6 +104,11 @@ public class Game : MonoBehaviour
         Ball.controller2D.collisions.Reset();
         Ball.velocity.current = Vector2.zero;
         Ball.velocity.resting = Vector2.zero;
+        if (!isLeftServing && noRightPlayer)
+        {
+            Ball.velocity.current = new Vector2(-3, 1.5f) * Random.Range(autoServeRange.x, autoServeRange.y);
+            Ball.velocity.resting = Ball.velocity.current;
+        }
         ballPreviousX = Ball.transform.localPosition.x;
     }
 
@@ -130,7 +137,14 @@ public class Game : MonoBehaviour
 
     private void UpdateServingPlayer(bool leftScored)
     {
-        isLeftServing = (isLeftServing && !leftScored || !isLeftServing && leftScored) ? !isLeftServing : isLeftServing; // Maybe change for training
+        if (noRightPlayer)
+        {
+            isLeftServing = !isLeftServing;
+        }
+        else
+        {
+            isLeftServing = (isLeftServing && !leftScored || !isLeftServing && leftScored) ? !isLeftServing : isLeftServing; // Maybe change for training
+        }
     }
 
     public float getDeltaTime()
@@ -150,13 +164,13 @@ public class Game : MonoBehaviour
 
     public void AddRightPoint(int addedPoints)
     {
-        rightPoint += hasServed ? addedPoints : 0;
+        rightPoint += hasServed || !noServeMistakePoints ? addedPoints : 0;
         startNewRound(false);
     }
     
     public void AddLeftPoint(int addedPoints)
     {
-        leftPoint += hasServed ? addedPoints : 0;
+        leftPoint += hasServed || !noServeMistakePoints ? addedPoints : 0;
         startNewRound(true);
     }
 }

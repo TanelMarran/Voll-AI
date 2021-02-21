@@ -1122,10 +1122,9 @@ PrefabInstance:
       objectReference: {fileID: 8038999483028085202}
     - target: {fileID: 8186901154727408582, guid: 62408ea7ef974e54eb287ec6bb2f5453,
         type: 3}
-      propertyPath: m_Model
-      value: 
-      objectReference: {fileID: 5022602860645237092, guid: 7f20140b21cd83b46871584463193cbf,
-        type: 3}
+      propertyPath: m_BrainParameters.NumStackedVectorObservations
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62408ea7ef974e54eb287ec6bb2f5453, type: 3}
 --- !u!114 &8038999481532819771 stripped
@@ -1267,8 +1266,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 7f20140b21cd83b46871584463193cbf,
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186901154727408582, guid: 62408ea7ef974e54eb287ec6bb2f5453,
         type: 3}
+      propertyPath: m_BrainParameters.NumStackedVectorObservations
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62408ea7ef974e54eb287ec6bb2f5453, type: 3}
 --- !u!114 &2165655648661036856 stripped
