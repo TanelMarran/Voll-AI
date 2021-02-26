@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
         controller2D = GetComponent<Controller2D>();
         ballCollider = GetComponent<CircleCollider2D>();
         inputs = GetComponent<PlayerInputTransformer>();
+        inputs.Reset();
     }
 
     private void Awake()
@@ -79,6 +80,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Time.time == 0)
+        {
+            inputs.Reset();
+        }
         State.FixedUpdate();
     }
 

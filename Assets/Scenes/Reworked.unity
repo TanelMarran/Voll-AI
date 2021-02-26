@@ -132,17 +132,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: c11b3d12eb78839469dc66a53f762825,
+      objectReference: {fileID: 0}
+    - target: {fileID: 2165655648661036737, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
+      propertyPath: m_BehaviorName
+      value: Volleyball
+      objectReference: {fileID: 0}
+    - target: {fileID: 2165655648661036737, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2165655648661036737, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: m_InferenceDevice
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2165655648661036737, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
-      value: 9
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2165655648661036738, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2165655648661036740, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
@@ -152,7 +166,17 @@ PrefabInstance:
     - target: {fileID: 2165655648661036741, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3346374457745303758, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: DecisionPeriod
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912184232450924237, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: DecisionPeriod
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8038999481152275427, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
@@ -183,12 +207,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: c11b3d12eb78839469dc66a53f762825,
+      objectReference: {fileID: 0}
+    - target: {fileID: 8038999481532819650, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
+      propertyPath: m_BehaviorName
+      value: Volleyball
+      objectReference: {fileID: 0}
+    - target: {fileID: 8038999481532819650, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8038999481532819650, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: m_InferenceDevice
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8038999481532819650, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
-      value: 9
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8038999481532819655, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8038999481955521789, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
@@ -252,8 +295,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8038999481955521791, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
+      propertyPath: RewardCanvas
+      value: 
+      objectReference: {fileID: 509226918}
+    - target: {fileID: 8038999481955521791, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: isLeftServing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8038999481955521791, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
       propertyPath: noRightPlayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8038999481955521791, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
@@ -267,11 +320,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8038999481955521791, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
+      propertyPath: RewardNoticePrefab
+      value: 
+      objectReference: {fileID: 2811778841155772851, guid: df54d77a590e1fd439d619fdd0e8c41e,
+        type: 3}
+    - target: {fileID: 8038999481955521791, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
       propertyPath: noServeMistakePoints
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8385589801266760595, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1686758931}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e0c52308f430b47af0c370adb8a4a2, type: 3}
+--- !u!224 &509226918 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6814453542166419533, guid: 59e0c52308f430b47af0c370adb8a4a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 509226917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &529478205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2165655648661036859, guid: 59e0c52308f430b47af0c370adb8a4a2,

@@ -16,12 +16,17 @@ namespace Input
         private bool isJumpReleasedThisFrame;
         private bool isHitReleasedThisFrame;
 
-        private void FixedUpdate()
+        public void Reset()
         {
             isJumpPressedThisFrame = false;
             isHitPressedThisFrame = false;
             isJumpReleasedThisFrame = false;
             isHitReleasedThisFrame = false;
+        }
+
+        private void FixedUpdate()
+        {
+            Reset();
         }
         
         private void SetHitKey(bool val)

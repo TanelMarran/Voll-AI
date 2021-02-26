@@ -10,6 +10,7 @@ public class PlayerAgent : Agent
     public Player _self;
     public Player _opponent;
     public Ball _ball;
+    private Game _game;
 
     public Vector2 _xSide;
 
@@ -19,6 +20,8 @@ public class PlayerAgent : Agent
     private bool _selfTouchedBall = false;
     private bool _selfNetCross = false;
     private bool _selfMissedBall = false;
+
+    private PlayerAgent _opponentAgent;
 
     private const float RewardNetCross = 0.2f;
     private const float RewardTouch = 0.033f;
@@ -31,14 +34,17 @@ public class PlayerAgent : Agent
 
     public static Vector2 NormalizeVector = new Vector2(1f / 8.5f, 1f / 10f);
 
-    private const int WinningScore = 10;
+    private const int WinningScore = 2;
     
-    private void Start()
+    public override void Initialize()
     {
         _self = GetComponent<Player>();
         _opponent = isLeftPlayer ? _self.game.RightPlayer : _self.game.LeftPlayer;
         _ball = _self.game.Ball;
         _xSide = isLeftPlayer ? new Vector2(-1, 1) : new Vector2(1, 1);
+        _game = _self.game;
+
+        _opponentAgent = _opponent.GetComponent<PlayerAgent>();
         
         _ball.OnBallTouched.AddListener(OnBallTouch);
         _ball.game.OnNetCross.AddListener(OnNetCross);
@@ -75,12 +81,11 @@ public class PlayerAgent : Agent
         sensor.AddObservation(Vector2.Scale(_self.velocity.current, scaler));
         sensor.AddObservation(_self.currentDashes);
 
-        /*/ Opponent
+        // Opponent
         sensor.AddObservation(Vector2.Scale(_opponent.transform.localPosition, scaler));
         sensor.AddObservation(Vector2.Scale(_opponent.velocity.current, scaler));
         sensor.AddObservation(_opponent.currentDashes);
-        //*/
-        
+
         // Ball
         sensor.AddObservation(Vector2.Scale(_ball.transform.localPosition, scaler));
         sensor.AddObservation(Vector2.Scale(_ball.velocity.current, scaler));
@@ -103,18 +108,21 @@ public class PlayerAgent : Agent
         if (_selfTouchedBall)
         {
             AddReward(RewardTouch);
+            _game.displayRewardNotice(isLeftPlayer, RewardTouch);
             _selfTouchedBall = false;
         }
         
         if (_selfNetCross)
         {
             AddReward(RewardNetCross);
+            _game.displayRewardNotice(isLeftPlayer, RewardNetCross);
             _selfNetCross = false;
         }
         
         if (_selfMissedBall)
         {
             AddReward(-PenaltyBallMiss);
+            _game.displayRewardNotice(isLeftPlayer, -PenaltyBallMiss);
             _selfMissedBall = false;
         }
 
@@ -122,25 +130,25 @@ public class PlayerAgent : Agent
         {
             if (_self.game.leftPoint >= WinningScore)
             {
-                SetReward(RewardWin);
-                EndEpisode();
+                WinReward(true);
             }
         
             if (_opponent.game.rightPoint >= WinningScore)
             {
-                SetReward(-PenaltyGameLossed);
-                EndEpisode();
+                WinReward(false);
             }
             
             if (_self.game.leftPoint > _selfAccountedPoints)
             {
                 AddReward(RewardPoint);
+                _game.displayRewardNotice(isLeftPlayer, RewardPoint);
                 _selfAccountedPoints++;
             }
             
             if (_self.game.rightPoint > _opponentAccountedPoints)
             {
                 AddReward(-PenaltyPointLossed);
+                _game.displayRewardNotice(isLeftPlayer, -PenaltyPointLossed);
                 _opponentAccountedPoints++;
             }
         }
@@ -148,29 +156,44 @@ public class PlayerAgent : Agent
         {
             if (_self.game.rightPoint >= WinningScore)
             {
-                SetReward(RewardWin);
-                EndEpisode();
+                WinReward(true);
             }
         
             if (_opponent.game.leftPoint >= WinningScore)
             {
-                SetReward(-PenaltyGameLossed);
-                EndEpisode();
+                WinReward(false);
             }
             
             if (_self.game.rightPoint > _selfAccountedPoints)
             {
                 AddReward(RewardPoint);
+                _game.displayRewardNotice(isLeftPlayer, RewardPoint);
                 _selfAccountedPoints++;
             }
             
             if (_self.game.leftPoint > _opponentAccountedPoints)
             {
                 AddReward(-PenaltyPointLossed);
+                _game.displayRewardNotice(isLeftPlayer, -PenaltyPointLossed);
                 _opponentAccountedPoints++;
             }
         }
     }
+
+    public void WinReward(bool isWinner)
+    {
+        float selfReward = isWinner ? RewardWin : -PenaltyGameLossed;
+        float opponentReward = !isWinner ? RewardWin : -PenaltyGameLossed;
+        
+        AddReward(selfReward);
+        _opponentAgent.AddReward(opponentReward);
+        _game.displayRewardNotice(isLeftPlayer, selfReward);
+        _game.displayRewardNotice(!isLeftPlayer, opponentReward);
+        _opponentAgent.EndEpisode();
+        EndEpisode();
+    }
+
+    public override void Heuristic(in ActionBuffers actionsOut) {}
 
     public override void OnEpisodeBegin()
     {

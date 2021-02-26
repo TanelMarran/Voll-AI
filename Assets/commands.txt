@@ -1,6 +1,7 @@
 ﻿.\python-envs\VollAI\Scripts\activate
 
-mlagents-learn .\config\playerbehaviour_config.yaml --run-id=16feb --resume
+mlagents-learn .\config\Volleyball_config.yaml --run-id=26feb
+mlagents-learn .\config\Tennis_config.yaml --run-id=26feb
 
 tensorboard --logdir results --port 6006
 

@@ -16,7 +16,9 @@ public class Game : MonoBehaviour
     public static float maxFallSpeed = 16f;
     public static float gravityAmount = 20f;
     public static float airRestitution = 10f;
-
+    public Transform RewardCanvas;
+    public RewardNotice RewardNoticePrefab;
+    
     public bool isLeftServing = true;
 
     private float hitStopTimestamp = 0;
@@ -46,6 +48,14 @@ public class Game : MonoBehaviour
 
     private static readonly Vector3 leftMirror = new Vector3(-1, 1, 1);
 
+    public void displayRewardNotice(bool isLeftPlayer, float value)
+    {
+        if (value != 0)
+        {
+            RewardNotice.Create(RewardNoticePrefab, (isLeftPlayer ? LeftPlayer.transform.position : RightPlayer.transform.position) + Vector3.up, RewardCanvas, value);
+        }
+    }
+
     private void Awake()
     {
         if (OnNetCross == null)
@@ -62,7 +72,7 @@ public class Game : MonoBehaviour
         rightPlayerStart = RightPlayer.transform.localPosition;
         ballStart = Ball.transform.localPosition;
 
-        startNewRound(true);
+        startNewRound(isLeftServing);
     }
 
     private void Update()
@@ -114,17 +124,23 @@ public class Game : MonoBehaviour
 
     private void resetPlayers()
     {
-        // Left Player
-        LeftPlayer.transform.localPosition = leftPlayerStart;
-        LeftPlayer.State.SetState(LeftPlayer.PlayerGround);
-        LeftPlayer.controller2D.collisions.Reset();
-        LeftPlayer.velocity.current = Vector2.zero;
+        if (LeftPlayer.State != null)
+        {
+            // Left Player
+            LeftPlayer.transform.localPosition = leftPlayerStart;
+            LeftPlayer.State.SetState(LeftPlayer.PlayerGround);
+            LeftPlayer.controller2D.collisions.Reset();
+            LeftPlayer.velocity.current = Vector2.zero;
+        }
 
-        // Right Player
-        RightPlayer.transform.localPosition = rightPlayerStart;
-        RightPlayer.State.SetState(RightPlayer.PlayerGround);
-        RightPlayer.controller2D.collisions.Reset();
-        RightPlayer.velocity.current = Vector2.zero;
+        if (RightPlayer.State != null)
+        {
+            // Right Player
+            RightPlayer.transform.localPosition = rightPlayerStart;
+            RightPlayer.State.SetState(RightPlayer.PlayerGround);
+            RightPlayer.controller2D.collisions.Reset();
+            RightPlayer.velocity.current = Vector2.zero;
+        }
     }
 
     public void startNewGame()
