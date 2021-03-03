@@ -40,6 +40,18 @@ public class Player : MonoBehaviour
     
     public UnityEvent OnBallMissed;
 
+    private int HitsLeft;
+
+    public void setHits(int _hitsLeft)
+    {
+        HitsLeft = _hitsLeft;
+    }
+
+    public int getHits()
+    {
+        return HitsLeft;
+    }
+
     private void Start()
     {
         State = new StateMachine<Player>();
@@ -115,7 +127,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (inputs.HitPressed() && Time.time > HitStateTimestamp)
+            if (inputs.HitPressed() && Time.time > HitStateTimestamp && HitsLeft > 0)
             {
                 isHitting = true;
                 HitStateTimestamp = Time.time + HitActiveTime;

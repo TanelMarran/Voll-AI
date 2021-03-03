@@ -40,11 +40,15 @@ public class Game : MonoBehaviour
     private Vector3 leftPlayerStart;
     private Vector3 rightPlayerStart;
     private Vector3 ballStart;
+    
+    public int allowedHits;
 
     public float GameTime => time;
     public float GameDelta => Time.deltaTime * GameSpeed;
 
     private TextMeshProUGUI _text;
+    public TextMeshProUGUI _leftTouchesText;
+    public TextMeshProUGUI _rightTouchesText;
 
     private static readonly Vector3 leftMirror = new Vector3(-1, 1, 1);
 
@@ -73,6 +77,23 @@ public class Game : MonoBehaviour
         ballStart = Ball.transform.localPosition;
 
         startNewRound(isLeftServing);
+        Ball.OnBallTouched.AddListener(OnBallTouch);
+        LeftPlayer.setHits(allowedHits);
+        RightPlayer.setHits(allowedHits);
+    }
+
+    private void OnBallTouch(Player player)
+    {
+        if (player == LeftPlayer)
+        {
+            LeftPlayer.setHits(LeftPlayer.getHits() - 1);
+            RightPlayer.setHits(allowedHits);
+        }
+        else
+        {
+            RightPlayer.setHits(RightPlayer.getHits() - 1);
+            LeftPlayer.setHits(allowedHits);
+        }
     }
 
     private void Update()
@@ -81,6 +102,8 @@ public class Game : MonoBehaviour
         time += GameDelta;
 
         _text.text = leftPoint + "-" + rightPoint;
+        _leftTouchesText.text = LeftPlayer.getHits().ToString();
+        _rightTouchesText.text = RightPlayer.getHits().ToString();
 
         CheckNetCross();
     }
@@ -145,10 +168,15 @@ public class Game : MonoBehaviour
 
     public void startNewGame()
     {
+        startNewGame(Random.value > .5f);
+    }
+    
+    public void startNewGame(bool leftScored)
+    {
         leftPoint = 0;
         rightPoint = 0;
         isLeftServing = true;
-        startNewRound(true);
+        startNewRound(leftScored);
     }
 
     private void UpdateServingPlayer(bool leftScored)

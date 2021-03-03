@@ -23,21 +23,24 @@ public class PlayerAgent : Agent
 
     private PlayerAgent _opponentAgent;
 
-    private const float RewardNetCross = 0.2f;
-    private const float RewardTouch = 0.033f;
-    private const float RewardWin = 0f;
-    private const float RewardPoint = 1f;
+    private const float RewardNetCross = 0f;
+    private const float RewardTouch = 0f;
+    private const float RewardWin = 1f;
+    private const float RewardPoint = 0f;
     
-    private const float PenaltyBallMiss = 0.001f;
-    private const float PenaltyPointLossed = 1f;
-    private const float PenaltyGameLossed = 0f;
+    private const float PenaltyBallMiss = 0f;
+    private const float PenaltyPointLossed = 0f;
+    private const float PenaltyGameLossed = 1f;
+
+    private int _rounds;
 
     public static Vector2 NormalizeVector = new Vector2(1f / 8.5f, 1f / 10f);
 
-    private const int WinningScore = 2;
+    private const int WinningScore = 10;
     
-    public override void Initialize()
+    public void Start()
     {
+        _rounds = 0;
         _self = GetComponent<Player>();
         _opponent = isLeftPlayer ? _self.game.RightPlayer : _self.game.LeftPlayer;
         _ball = _self.game.Ball;
@@ -47,7 +50,7 @@ public class PlayerAgent : Agent
         _opponentAgent = _opponent.GetComponent<PlayerAgent>();
         
         _ball.OnBallTouched.AddListener(OnBallTouch);
-        _ball.game.OnNetCross.AddListener(OnNetCross);
+        _self.game.OnNetCross.AddListener(OnNetCross);
         _self.OnBallMissed.AddListener(OnBallMiss);
     }
 
@@ -80,6 +83,7 @@ public class PlayerAgent : Agent
         sensor.AddObservation(Vector2.Scale(_self.transform.localPosition, scaler));
         sensor.AddObservation(Vector2.Scale(_self.velocity.current, scaler));
         sensor.AddObservation(_self.currentDashes);
+        sensor.AddObservation(_self.getHits());
 
         // Opponent
         sensor.AddObservation(Vector2.Scale(_opponent.transform.localPosition, scaler));
@@ -197,7 +201,8 @@ public class PlayerAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-        _self.game.startNewGame();
+        _rounds++;
+        _self.game.startNewGame(_rounds % 2 == 0);
         _selfAccountedPoints = 0;
         _opponentAccountedPoints = 0;
     }
