@@ -24,7 +24,7 @@ public class Controller2D : MonoBehaviour
         CalculateRaySpacing();
     }
 
-    private void UpdateRaycastOrigins()
+    public void UpdateRaycastOrigins()
     {
         Bounds bounds = collider.bounds;
         bounds.Expand(SkinWidth * -2);

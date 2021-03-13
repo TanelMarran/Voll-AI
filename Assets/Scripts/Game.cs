@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,8 +26,15 @@ public class Game : MonoBehaviour
     [HideInInspector] public float GameSpeed = 1;
     private float time = 0;
 
+    public TextAppear LeftCelebration;
+    public TextAppear RightCelebration;
+    
+    public int WinningPoints = 10;
+    
     public int leftPoint = 0;
     public int rightPoint = 0;
+
+    public bool isTraining = true;
 
     [Tooltip("If true, points will not be awarded for missing serves")]
     public bool noServeMistakePoints = false;
@@ -134,9 +142,17 @@ public class Game : MonoBehaviour
     private void resetBall()
     {
         Ball.transform.localPosition = isLeftServing ? Vector3.Scale(ballStart, leftMirror) : ballStart;
-        Ball.controller2D.collisions.Reset();
+        Ball.Activate();
+        StartCoroutine(ballResetCorutine());
+    }
+
+    private IEnumerator ballResetCorutine()
+    {
+        yield return new WaitForFixedUpdate();
+        Ball.transform.localPosition = isLeftServing ? Vector3.Scale(ballStart, leftMirror) : ballStart;
         Ball.velocity.current = Vector2.zero;
         Ball.velocity.resting = Vector2.zero;
+        Ball.controller2D.collisions.Reset();
         if (!isLeftServing && noRightPlayer)
         {
             Ball.velocity.current = new Vector2(-3, 1.5f) * Random.Range(autoServeRange.x, autoServeRange.y);
@@ -147,11 +163,16 @@ public class Game : MonoBehaviour
 
     private void resetPlayers()
     {
+        LeftPlayer.setHits(allowedHits);
+        RightPlayer.setHits(allowedHits);
+        
         if (LeftPlayer.State != null)
         {
             // Left Player
             LeftPlayer.transform.localPosition = leftPlayerStart;
             LeftPlayer.State.SetState(LeftPlayer.PlayerGround);
+            LeftPlayer.isHitting = false;
+            LeftPlayer.HitStateTimestamp = Time.time;
             LeftPlayer.controller2D.collisions.Reset();
             LeftPlayer.velocity.current = Vector2.zero;
         }
@@ -161,6 +182,8 @@ public class Game : MonoBehaviour
             // Right Player
             RightPlayer.transform.localPosition = rightPlayerStart;
             RightPlayer.State.SetState(RightPlayer.PlayerGround);
+            RightPlayer.isHitting = false;
+            RightPlayer.HitStateTimestamp = Time.time;
             RightPlayer.controller2D.collisions.Reset();
             RightPlayer.velocity.current = Vector2.zero;
         }
@@ -209,12 +232,49 @@ public class Game : MonoBehaviour
     public void AddRightPoint(int addedPoints)
     {
         rightPoint += hasServed || !noServeMistakePoints ? addedPoints : 0;
-        startNewRound(false);
+        performRoundEnd(false);
     }
     
     public void AddLeftPoint(int addedPoints)
     {
         leftPoint += hasServed || !noServeMistakePoints ? addedPoints : 0;
-        startNewRound(true);
+        performRoundEnd(true);
+    }
+
+    private void performRoundEnd(bool leftScored)
+    {
+        if (isTraining)
+        {
+            startNewRound(leftScored);
+        }
+        else
+        {
+            if (leftScored)
+            {
+                LeftCelebration.In(true);
+            }
+            else
+            {
+                RightCelebration.In(true);
+            }
+            StartCoroutine(CelebratePoint(leftScored));
+        }
+    }
+
+    IEnumerator CelebratePoint(bool leftScored)
+    {
+        Ball.Deactivate();
+        yield return new WaitForSeconds(2);
+        LeftCelebration.Out(true);
+        RightCelebration.Out(true);
+        yield return new WaitForSeconds(1);
+        LeftPlayer.MovementPaused = true;
+        RightPlayer.MovementPaused = true;
+        Ball.MovementPaused = true;
+        startNewRound(leftScored);
+        yield return new WaitForSeconds(.5f);
+        LeftPlayer.MovementPaused = false;
+        RightPlayer.MovementPaused = false;
+        Ball.MovementPaused = false;
     }
 }

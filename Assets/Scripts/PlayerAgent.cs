@@ -36,8 +36,8 @@ public class PlayerAgent : Agent
 
     public static Vector2 NormalizeVector = new Vector2(1f / 8.5f, 1f / 10f);
 
-    private const int WinningScore = 10;
-    
+    private const int WinningScore = 1;
+
     public void Start()
     {
         _rounds = 0;
@@ -48,10 +48,13 @@ public class PlayerAgent : Agent
         _game = _self.game;
 
         _opponentAgent = _opponent.GetComponent<PlayerAgent>();
-        
-        _ball.OnBallTouched.AddListener(OnBallTouch);
-        _self.game.OnNetCross.AddListener(OnNetCross);
-        _self.OnBallMissed.AddListener(OnBallMiss);
+
+        if (_self.game.isTraining)
+        {
+            _ball.OnBallTouched.AddListener(OnBallTouch);
+            _self.game.OnNetCross.AddListener(OnNetCross);
+            _self.OnBallMissed.AddListener(OnBallMiss);   
+        }
     }
 
     private void OnBallTouch(Player player)
@@ -104,7 +107,10 @@ public class PlayerAgent : Agent
         _self.inputs.SetJumpKey(inputs[2] == 0 ? 1 : 0);
         _self.inputs.SetHitKey(inputs[3] == 0 ? 1 : 0);
 
-        AssignRewards();
+        if (_self.game.isTraining)
+        {
+            AssignRewards();
+        }
     }
 
     public void AssignRewards()
@@ -202,7 +208,10 @@ public class PlayerAgent : Agent
     public override void OnEpisodeBegin()
     {
         _rounds++;
-        _self.game.startNewGame(_rounds % 2 == 0);
+        if (_self.game.isTraining)
+        {
+            _self.game.startNewGame(_rounds % 2 == 0);
+        }
         _selfAccountedPoints = 0;
         _opponentAccountedPoints = 0;
     }

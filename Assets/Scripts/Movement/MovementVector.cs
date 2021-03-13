@@ -9,7 +9,6 @@ namespace Movement
         public Vector2 current;
         public Vector2 resting;
         
-
         public MovementVector(Vector2 resting)
         {
             this.resting = resting;

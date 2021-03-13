@@ -51,6 +51,14 @@ public class Player : MonoBehaviour
     {
         return HitsLeft;
     }
+    
+    private bool movementPaused = false;
+
+    public bool MovementPaused
+    {
+        get => movementPaused;
+        set => movementPaused = value;
+    }
 
     private void Start()
     {
@@ -96,7 +104,11 @@ public class Player : MonoBehaviour
         {
             inputs.Reset();
         }
-        State.FixedUpdate();
+
+        if (!MovementPaused)
+        {
+            State.FixedUpdate();
+        }
     }
 
     public void HitBehaviour()
@@ -105,8 +117,8 @@ public class Player : MonoBehaviour
         {
             var collision = ballCollider.Distance(game.Ball.Collider2D);
             bool ballHit = collision.distance <= 0f && (int)Mathf.Sign(transform.localPosition.x) == (int)Mathf.Sign(game.Ball.transform.localPosition.x);
-            
-            if (ballHit)
+
+            if (ballHit && game.Ball.IsActive())
             {
                 var factor = Mathf.Clamp(Mathf.Abs(collision.distance) / ballCollider.radius + 0.5f, 0, 1);
                 game.Ball.velocity.current = collision.normal * (HitStrength * factor);

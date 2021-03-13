@@ -1,0 +1,6 @@
+behaviors:
+  Volleyball:
+    trainer_type: ppo
+    max_steps: 5000000
+    self_play:
+      save_steps: 20000
