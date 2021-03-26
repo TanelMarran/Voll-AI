@@ -5,7 +5,7 @@ using Movement;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerEvent : UnityEvent<Player> {}
+public class PlayerEvent : UnityEvent<Ball.PlayerHit> {}
 
 [RequireComponent(typeof(Controller2D))]
 public class Ball : MonoBehaviour
@@ -23,6 +23,12 @@ public class Ball : MonoBehaviour
     private bool _isActive = true;
     
     private bool movementPaused = false;
+
+    public struct PlayerHit
+    {
+        public Player Player;
+        public float Distance;
+    }
 
     public bool MovementPaused
     {

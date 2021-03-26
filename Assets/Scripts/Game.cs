@@ -90,9 +90,9 @@ public class Game : MonoBehaviour
         RightPlayer.setHits(allowedHits);
     }
 
-    private void OnBallTouch(Player player)
+    private void OnBallTouch(Ball.PlayerHit player)
     {
-        if (player == LeftPlayer)
+        if (player.Player == LeftPlayer)
         {
             LeftPlayer.setHits(LeftPlayer.getHits() - 1);
             RightPlayer.setHits(allowedHits);

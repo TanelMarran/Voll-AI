@@ -17,14 +17,15 @@ public class PlayerAgent : Agent
     private int _selfAccountedPoints = 0;
     private int _opponentAccountedPoints = 0;
 
-    private bool _selfTouchedBall = false;
+    private float _selfTouchedBall = -1f;
     private bool _selfNetCross = false;
     private bool _selfMissedBall = false;
 
     private PlayerAgent _opponentAgent;
 
     private const float RewardNetCross = 0f;
-    private const float RewardTouch = 0f;
+    private const float RewardTouch = 0;
+    private const bool RewardTouchDist = true;
     private const float RewardWin = 1f;
     private const float RewardPoint = 0f;
     
@@ -32,6 +33,7 @@ public class PlayerAgent : Agent
     private const float PenaltyPointLossed = 0f;
     private const float PenaltyGameLossed = 1f;
 
+    
     private int _rounds;
 
     public static Vector2 NormalizeVector = new Vector2(1f / 8.5f, 1f / 10f);
@@ -57,11 +59,11 @@ public class PlayerAgent : Agent
         }
     }
 
-    private void OnBallTouch(Player player)
+    private void OnBallTouch(Ball.PlayerHit player)
     {
-        if (player == _self)
+        if (player.Player == _self)
         {
-            _selfTouchedBall = true;
+            _selfTouchedBall = player.Distance;
         }
     }
     
@@ -115,11 +117,12 @@ public class PlayerAgent : Agent
 
     public void AssignRewards()
     {
-        if (_selfTouchedBall)
+        if (_selfTouchedBall != -1f)
         {
-            AddReward(RewardTouch);
-            _game.displayRewardNotice(isLeftPlayer, RewardTouch);
-            _selfTouchedBall = false;
+            float reward = RewardTouchDist ? RewardTouch * (1 - _selfTouchedBall) : RewardTouch;
+            AddReward(reward);
+            _game.displayRewardNotice(isLeftPlayer, reward);
+            _selfTouchedBall = -1f;
         }
         
         if (_selfNetCross)

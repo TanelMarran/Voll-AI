@@ -3,7 +3,7 @@
 mlagents-learn .\config\Volleyball_config.yaml --run-id=7mar
 mlagents-learn .\config\Tennis_config.yaml --run-id=26feb
 
-mlagents-learn .\config\Default_config.yaml --run-id=default
+mlagents-learn .\config\Volley_config.yaml --run-id=volley
 mlagents-learn .\config\Domain_config.yaml --run-id=domain
 mlagents-learn .\config\Tennis_config.yaml --run-id=tennis
 
