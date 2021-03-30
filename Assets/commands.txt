@@ -11,3 +11,10 @@ mlagents-learn .\config\Tennis_config.yaml --run-id=tennis
 tensorboard --logdir results --port 6006
 
 tensorboard --logdir results/7mar --port 6006
+
+python aggregator.py --path C:/Users/Tanel/Desktop/Tanel/Repositories/Voll-AI/results/defaults --subpaths ['Volleyball']
+
+
+activate thesis
+cd C:\Users\Tanel\Desktop\tensorboard-aggregator-master
+python aggregator.py --path C:/Users/Tanel/Desktop/Tanel/Repositories/Voll-AI/results/XXXX --subpaths ['Volleyball']

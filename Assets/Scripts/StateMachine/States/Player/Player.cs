@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 
     private int HitsLeft;
 
+    public AudioObject audioHit;
+
     public void setHits(int _hitsLeft)
     {
         HitsLeft = _hitsLeft;
@@ -126,6 +128,7 @@ public class Player : MonoBehaviour
                 hit.Player = this;
                 hit.Distance = 1 - Mathf.Abs(collision.distance) / ballCollider.radius;
                 game.Ball.OnBallTouched.Invoke(hit);
+                AudioManager.PlaySound(audioHit);
             }
 
             var overTime = Time.time > HitStateTimestamp;
