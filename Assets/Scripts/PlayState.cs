@@ -6,7 +6,7 @@ public class PlayState
 {
     public static bool isLeftMachine = true;
     public static bool isRightMachine = true;
-    public static int bestTo = 10;
+    public static int firstTo = 5;
 
     public Game Game;
 

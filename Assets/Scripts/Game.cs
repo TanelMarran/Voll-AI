@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class BoolEvent : UnityEvent<bool> {}
@@ -28,6 +29,7 @@ public class Game : MonoBehaviour
 
     public TextAppear LeftCelebration;
     public TextAppear RightCelebration;
+    public TextAppear WinnerText;
     
     public int WinningPoints = 10;
     
@@ -57,6 +59,7 @@ public class Game : MonoBehaviour
     private TextMeshProUGUI _text;
     public TextMeshProUGUI _leftTouchesText;
     public TextMeshProUGUI _rightTouchesText;
+    public TextMeshProUGUI winnerText;
 
     private static readonly Vector3 leftMirror = new Vector3(-1, 1, 1);
 
@@ -88,6 +91,8 @@ public class Game : MonoBehaviour
         Ball.OnBallTouched.AddListener(OnBallTouch);
         LeftPlayer.setHits(allowedHits);
         RightPlayer.setHits(allowedHits);
+
+        WinningPoints = PlayState.firstTo;
     }
 
     private void OnBallTouch(Ball.PlayerHit player)
@@ -249,15 +254,24 @@ public class Game : MonoBehaviour
         }
         else
         {
-            if (leftScored)
+            if (leftPoint >= WinningPoints || rightPoint >= WinningPoints)
             {
-                LeftCelebration.In(true);
+                winnerText.text = leftScored ? "Left wins!" : "Right wins!";
+                WinnerText.In(true);
+                StartCoroutine(CelebrateVictory());
             }
             else
             {
-                RightCelebration.In(true);
+                if (leftScored)
+                {
+                    LeftCelebration.In(true);
+                }
+                else
+                {
+                    RightCelebration.In(true);
+                }
+                StartCoroutine(CelebratePoint(leftScored));
             }
-            StartCoroutine(CelebratePoint(leftScored));
         }
     }
 
@@ -271,10 +285,19 @@ public class Game : MonoBehaviour
         LeftPlayer.MovementPaused = true;
         RightPlayer.MovementPaused = true;
         Ball.MovementPaused = true;
-        startNewRound(leftScored);
-        yield return new WaitForSeconds(.5f);
+        Transition.Play(() => startNewRound(leftScored));
+        yield return new WaitForSeconds(1f);
         LeftPlayer.MovementPaused = false;
         RightPlayer.MovementPaused = false;
         Ball.MovementPaused = false;
+    }
+    
+    IEnumerator CelebrateVictory()
+    {
+        Ball.Deactivate();
+        yield return new WaitForSeconds(3f);
+        LeftCelebration.Out(true);
+        RightCelebration.Out(true);
+        Transition.Play(() => SceneManager.LoadScene(0));
     }
 }

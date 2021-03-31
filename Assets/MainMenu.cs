@@ -12,12 +12,17 @@ public class MainMenu : MonoBehaviour
     {
         PlayState.isLeftMachine = true;
         PlayState.isRightMachine = true;
-        PlayState.bestTo = 10;
+        PlayState.firstTo = 5;
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        Transition.Play(() => SceneManager.LoadScene(1));
+    }
+
+    public void OpenForm()
+    {
+        Application.OpenURL("https://forms.gle/aQFxHEEYFftbrocy7");
     }
 
     public void CloseGame()
@@ -28,6 +33,11 @@ public class MainMenu : MonoBehaviour
     public void setLeftPlayer(int value)
     {
         PlayState.isLeftMachine = value == 1;
+    }
+    
+    public void setWinningScore(int value)
+    {
+        PlayState.firstTo = value == 0 ? 3 : (value == 1 ? 5 : 10);
     }
 
     public void setRightPlayer(int value)

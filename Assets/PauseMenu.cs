@@ -26,8 +26,11 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        Menu.SetActive(true);
-        IsPaused = true;
+        if (!Transition.isPlaying())
+        {
+            Menu.SetActive(true);
+            IsPaused = true;
+        }
     }
 
     public void ResumeGame()
@@ -38,6 +41,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        Transition.Play(() => SceneManager.LoadScene(0));
     }
 }
