@@ -14,6 +14,8 @@ public class HitRadius : MonoBehaviour
     private LineRenderer _line;
     private CircleCollider2D _circle;
     private Player _player;
+
+    private bool isLeft;
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class HitRadius : MonoBehaviour
         _circle = GetComponentInParent<CircleCollider2D>();
         _player = GetComponentInParent<Player>();
         setPoints(_circle.radius);
+        isLeft = _player.transform.position.x < 0;
     }
 
     public int PointCount
@@ -43,7 +46,16 @@ public class HitRadius : MonoBehaviour
         for (int i = 0; i < pointCount + 1; i++)
         {
             var angle = Mathf.Deg2Rad * stepAngle * i;
-            positions[i] = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            var x = Mathf.Cos(angle) * radius;
+            if (x + _player.transform.localPosition.x > 0 && isLeft)
+            {
+                x =  -_player.transform.localPosition.x;
+            }
+            if (x + _player.transform.localPosition.x < 0 && !isLeft)
+            {
+                x = -_player.transform.localPosition.x;
+            }
+            positions[i] = new Vector3(x, Mathf.Sin(angle) * radius, 0);
         }
         
         _line.SetPositions(positions);

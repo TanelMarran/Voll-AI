@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
     private List<AudioSource> sources;
     private static AudioManager instance;
+    public bool useSound = true;
     
     // Start is called before the first frame update
     void Start()
@@ -18,26 +20,36 @@ public class AudioManager : MonoBehaviour
 
     public static void PlaySound(AudioObject sound)
     {
-        AudioSource usableSource = null;
-        
-        // Use any available AudioSource
-        foreach (AudioSource source in instance.sources)
+        PlaySound(sound, 1);
+    }
+    
+    public static void PlaySound(AudioObject sound, float volume)
+    {
+        if (instance.useSound)
         {
-            if (!source.isPlaying)
+            AudioSource usableSource = null;
+        
+            // Use any available AudioSource
+            foreach (AudioSource source in instance.sources)
             {
-                usableSource = source;
-                break;
+                if (!source.isPlaying)
+                {
+                    usableSource = source;
+                    break;
+                }
             }
-        }
 
-        // Create a new one if none is available
-        if (usableSource is null)
-        {
-            usableSource = instance.gameObject.AddComponent<AudioSource>();
-            instance.sources.Add(usableSource);
-        }
+            // Create a new one if none is available
+            if (usableSource is null)
+            {
+                usableSource = instance.gameObject.AddComponent<AudioSource>();
+                instance.sources.Add(usableSource);
+            }
         
-        usableSource.clip = sound.clips[Random.Range(0, sound.clips.Length)];
-        usableSource.Play();
+            usableSource.clip = sound.clips[Random.Range(0, sound.clips.Length)];
+            usableSource.volume = sound.volume * volume;
+            usableSource.pitch = 1 + Random.Range(-sound.pitchshift, sound.pitchshift);
+            usableSource.Play();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ public class MainMenu : MonoBehaviour
     
     private void Start()
     {
-        PlayState.isLeftMachine = true;
+        PlayState.isLeftMachine = false;
         PlayState.isRightMachine = true;
         PlayState.firstTo = 5;
     }
@@ -43,5 +44,12 @@ public class MainMenu : MonoBehaviour
     public void setRightPlayer(int value)
     {
         PlayState.isRightMachine = value == 1;
+    }
+
+    public void openResultsDirectory()
+    {
+        string itemPath = Application.persistentDataPath + Path.DirectorySeparatorChar;
+        itemPath = itemPath.Replace(@"/", @"\");   // explorer doesn't like front slashes
+        System.Diagnostics.Process.Start("explorer.exe", "/open," + itemPath);
     }
 }

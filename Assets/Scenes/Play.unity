@@ -578,6 +578,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2165655649853544758, guid: 59e0c52308f430b47af0c370adb8a4a2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7701981603382650569, guid: 59e0c52308f430b47af0c370adb8a4a2,
         type: 3}
       propertyPath: m_textInfo.lineCount
@@ -2195,6 +2200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a27df0c5a922f046bacdaef98a7d163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useSound: 1
 --- !u!1001 &1995211959699669248
 PrefabInstance:
   m_ObjectHideFlags: 0

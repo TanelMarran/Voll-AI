@@ -734,14 +734,21 @@ MonoBehaviour:
     type: 3}
   isLeftServing: 0
   GameSpeed: 1
+  LeftCelebration: {fileID: 0}
+  RightCelebration: {fileID: 0}
+  WinnerText: {fileID: 0}
+  WinningPoints: 10
   leftPoint: 0
   rightPoint: 0
+  isTraining: 1
   noServeMistakePoints: 0
   noRightPlayer: 0
   autoServeRange: {x: 3.2, y: 4.8}
   allowedHits: 3
   _leftTouchesText: {fileID: 1753676060424503717}
   _rightTouchesText: {fileID: 7701981603382650569}
+  winnerText: {fileID: 0}
+  ScoreAudio: {fileID: 11400000, guid: 7ed9be8ba536d6f42a9f9ae9c7b9e06c, type: 2}
 --- !u!1 &8038999482173145423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1329,7 @@ MonoBehaviour:
   AirRestitutionFactor: 0.7
   controller2D: {fileID: 0}
   Collider2D: {fileID: 0}
+  BounceAudio: {fileID: 11400000, guid: 926bc56af90e1ed428ca66a47c140040, type: 2}
 --- !u!61 &8038999483028085201
 BoxCollider2D:
   m_ObjectHideFlags: 0

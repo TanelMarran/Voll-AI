@@ -18,3 +18,6 @@ python aggregator.py --path C:/Users/Tanel/Desktop/Tanel/Repositories/Voll-AI/re
 activate thesis
 cd C:\Users\Tanel\Desktop\tensorboard-aggregator-master
 python aggregator.py --path C:/Users/Tanel/Desktop/Tanel/Repositories/Voll-AI/results/XXXX --subpaths ['Volleyball']
+
+python aggregator.py --path C:/Users/Tanel/Desktop/Tanel/Repositories/Voll-AI/results/tennises --subpaths ['Volleyball']
+python aggregator.py --path C:/Users/Tanel/Desktop/Tanel/Repositories/Voll-AI/results/volleyballs --subpaths ['Volleyball']

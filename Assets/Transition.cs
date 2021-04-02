@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Transition : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Transition : MonoBehaviour
     private Action _callback = null;
     private float _lastProgress = 0;
     private float _endTimestamp = 0;
+    public AudioObject TransitonAudio;
     
     // Start is called before the first frame update
     void Start()
@@ -19,10 +21,12 @@ public class Transition : MonoBehaviour
         _animator = GetComponent<Animator>();
         _callback = null;
         instance = this;
+        AudioManager.PlaySound(instance.TransitonAudio);
     }
 
     public static void Play(Action callback)
     {
+        AudioManager.PlaySound(instance.TransitonAudio);
         instance._animator.Play("Transition_In", 0, 0);
         instance._callback = callback;
     }
@@ -44,10 +48,15 @@ public class Transition : MonoBehaviour
 
             if (time > .995f)
             {
+                Scene current = SceneManager.GetActiveScene();
                 _callback();
                 _callback = null;
                 instance._animator.Play("Transition_Out", 0, 0);
                 instance._endTimestamp = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                if (SceneManager.GetActiveScene() == current)
+                {
+                    AudioManager.PlaySound(instance.TransitonAudio);
+                }
             }
         }
     }

@@ -417,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1398e6e4fd867ee4cbe35406a33f5c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TransitonAudio: {fileID: 11400000, guid: 8a8d7eb2244efb84ca83234c44e1d44c, type: 2}
 --- !u!1 &1995211960328920756
 GameObject:
   m_ObjectHideFlags: 0

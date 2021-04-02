@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84beccd669c3b8542a3fad94865bc29a, type: 3}
+  m_Name: BallHit
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: f12105ed231144343bdb6299d5e870e3, type: 3}
+  - {fileID: 8300000, guid: 616174725cb05b747b070b889d6bee79, type: 3}
+  - {fileID: 8300000, guid: f4b878cb3c4811649a06eeafaf59d405, type: 3}
+  - {fileID: 8300000, guid: c38fda0cc68a4004fb63d77e1163aaf4, type: 3}
+  - {fileID: 8300000, guid: 124a32ab3bbc4ca46af3ed747a69850c, type: 3}
+  - {fileID: 8300000, guid: e7f8808cf170f1545999403023bd084a, type: 3}
+  - {fileID: 8300000, guid: fa2d3f656961e34438f352f2f66e1f55, type: 3}
+  - {fileID: 8300000, guid: faaf8e110f06c794cb1eca60ce391a99, type: 3}
+  - {fileID: 8300000, guid: faaa8224504bec44c81df7ad9374bcc4, type: 3}
+  - {fileID: 8300000, guid: 1edfb9b768698ec4393b6ae7820edac3, type: 3}
+  - {fileID: 8300000, guid: 1a74388595426934a84ff48f279331ae, type: 3}

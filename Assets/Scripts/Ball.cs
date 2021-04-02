@@ -24,6 +24,8 @@ public class Ball : MonoBehaviour
     
     private bool movementPaused = false;
 
+    public AudioObject BounceAudio;
+
     public struct PlayerHit
     {
         public Player Player;
@@ -96,12 +98,14 @@ public class Ball : MonoBehaviour
             if (controller2D.collisions.below || controller2D.collisions.above)
             {
                 velocity.current.y *= -0.9f;
+                PlayBounce();
                 controller2D.collisions.Reset();
             }
 
             if (controller2D.collisions.left || controller2D.collisions.right)
             {
                 velocity.current.x *= -0.9f;
+                PlayBounce();
                 controller2D.collisions.Reset();
             }
 
@@ -110,5 +114,10 @@ public class Ball : MonoBehaviour
             velocity.applyRestitution(Game.airRestitution * deltaTime * AirRestitutionFactor);
             controller2D.Move(velocity.current * deltaTime);
         } 
+    }
+
+    private void PlayBounce()
+    {
+        AudioManager.PlaySound(BounceAudio, velocity.current.magnitude / 10f);
     }
 }

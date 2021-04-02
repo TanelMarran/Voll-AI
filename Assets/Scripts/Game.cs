@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -62,6 +64,8 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI winnerText;
 
     private static readonly Vector3 leftMirror = new Vector3(-1, 1, 1);
+
+    public AudioObject ScoreAudio;
 
     public void displayRewardNotice(bool isLeftPlayer, float value)
     {
@@ -254,10 +258,12 @@ public class Game : MonoBehaviour
         }
         else
         {
+            AudioManager.PlaySound(ScoreAudio);
             if (leftPoint >= WinningPoints || rightPoint >= WinningPoints)
             {
                 winnerText.text = leftScored ? "Left wins!" : "Right wins!";
                 WinnerText.In(true);
+                WriteResults(leftScored);
                 StartCoroutine(CelebrateVictory());
             }
             else
@@ -299,5 +305,16 @@ public class Game : MonoBehaviour
         LeftCelebration.Out(true);
         RightCelebration.Out(true);
         Transition.Play(() => SceneManager.LoadScene(0));
+    }
+
+    private void WriteResults(bool leftWon)
+    {
+        string fileName = PlayState.logFile;
+        string str = String.Format("{0},{1},{2},{3},{4},{5},",
+            leftPoint.ToString(), rightPoint.ToString(), PlayState.isLeftMachine, PlayState.isRightMachine,
+            leftWon.ToString(), PlayState.firstTo);
+        var sr = new StreamWriter(fileName, true);
+        sr.WriteLine(str);
+        sr.Close();
     }
 }
