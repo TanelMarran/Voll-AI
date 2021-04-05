@@ -6,6 +6,8 @@ mlagents-learn .\config\Tennis_config.yaml --run-id=26feb
 mlagents-learn .\config\Volley_config.yaml --run-id=volley
 mlagents-learn .\config\Domain_config.yaml --run-id=domain
 mlagents-learn .\config\Tennis_config.yaml --run-id=tennis
+mlagents-learn .\config\Game_config.yaml --run-id=game --resume
+
 
 
 tensorboard --logdir results --port 6006

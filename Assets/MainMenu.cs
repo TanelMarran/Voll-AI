@@ -13,6 +13,8 @@ public class MainMenu : MonoBehaviour
     {
         PlayState.isLeftMachine = false;
         PlayState.isRightMachine = true;
+        PlayState.isLeftHard = false;
+        PlayState.isRightHard = false;
         PlayState.firstTo = 5;
     }
 
@@ -33,7 +35,8 @@ public class MainMenu : MonoBehaviour
     
     public void setLeftPlayer(int value)
     {
-        PlayState.isLeftMachine = value == 1;
+        PlayState.isLeftMachine = value != 0;
+        PlayState.isLeftHard = value == 2;
     }
     
     public void setWinningScore(int value)
@@ -43,13 +46,15 @@ public class MainMenu : MonoBehaviour
 
     public void setRightPlayer(int value)
     {
-        PlayState.isRightMachine = value == 1;
+        PlayState.isRightMachine = value != 0;
+        PlayState.isRightHard = value == 2;
     }
 
     public void openResultsDirectory()
     {
         string itemPath = Application.persistentDataPath + Path.DirectorySeparatorChar;
-        itemPath = itemPath.Replace(@"/", @"\");   // explorer doesn't like front slashes
-        System.Diagnostics.Process.Start("explorer.exe", "/open," + itemPath);
+        OpenInFileBrowser.Open(itemPath);
+        //itemPath = itemPath.Replace(@"/", @"\");   // explorer doesn't like front slashes
+        //System.Diagnostics.Process.Start("explorer.exe", "/open," + itemPath);
     }
 }

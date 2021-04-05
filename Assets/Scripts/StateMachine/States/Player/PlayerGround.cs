@@ -27,6 +27,7 @@ namespace Movement
 
             if (Handler.inputs.JumpPressed())
             {
+                AudioManager.PlaySound(Handler.audioJump);
                 Handler.velocity.resting.y = Handler.velocity.current.y = Handler.jumpPower;
                 Handler.isJumping = true;
             }

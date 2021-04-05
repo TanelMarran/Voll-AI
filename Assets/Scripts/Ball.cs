@@ -23,6 +23,7 @@ public class Ball : MonoBehaviour
     private bool _isActive = true;
     
     private bool movementPaused = false;
+    private TrailRenderer _trail;
 
     public AudioObject BounceAudio;
 
@@ -66,6 +67,12 @@ public class Ball : MonoBehaviour
     {
         Collider2D = GetComponent<CircleCollider2D>();
         controller2D = GetComponent<Controller2D>();
+        _trail = GetComponent<TrailRenderer>();
+    }
+
+    private void Update()
+    {
+        _trail.time = Mathf.Max(0, _trail.time - Time.deltaTime * .8f);
     }
 
     // Update is called once per frame
@@ -119,5 +126,10 @@ public class Ball : MonoBehaviour
     private void PlayBounce()
     {
         AudioManager.PlaySound(BounceAudio, velocity.current.magnitude / 10f);
+    }
+
+    public void setTrail(float time)
+    {
+        _trail.time = time;
     }
 }

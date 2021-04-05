@@ -310,9 +310,9 @@ public class Game : MonoBehaviour
     private void WriteResults(bool leftWon)
     {
         string fileName = PlayState.logFile;
-        string str = String.Format("{0},{1},{2},{3},{4},{5},",
+        string str = String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}",
             leftPoint.ToString(), rightPoint.ToString(), PlayState.isLeftMachine, PlayState.isRightMachine,
-            leftWon.ToString(), PlayState.firstTo);
+            leftWon.ToString(), PlayState.firstTo, "v2",PlayState.isLeftHard, PlayState.isRightHard);
         var sr = new StreamWriter(fileName, true);
         sr.WriteLine(str);
         sr.Close();

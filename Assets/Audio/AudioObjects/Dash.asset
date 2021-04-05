@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84beccd669c3b8542a3fad94865bc29a, type: 3}
-  m_Name: Jump
+  m_Name: Dash
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: af151097c0f403744b92f3aa4f9c0654, type: 3}
-  - {fileID: 8300000, guid: e69892cf68855de4d9abe963f58456bf, type: 3}
-  - {fileID: 8300000, guid: 8f88e8297a4e2c04fbad8c35d85b67d2, type: 3}
-  volume: 0.027
+  - {fileID: 8300000, guid: 04e4f191c5410fd40858284c9c9644be, type: 3}
+  - {fileID: 8300000, guid: 3e9c9610aaab5fa4597c4914d6719eb2, type: 3}
+  - {fileID: 8300000, guid: d1069fea7b6d61947aecb506bc059f05, type: 3}
+  - {fileID: 8300000, guid: ffd9dce636448e642be96b25edba64d3, type: 3}
+  volume: 0.19
   pitchshift: 0.05

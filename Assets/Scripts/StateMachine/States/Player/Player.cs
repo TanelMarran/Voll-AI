@@ -37,12 +37,16 @@ public class Player : MonoBehaviour
     [HideInInspector] public PlayerInputTransformer inputs;
     [HideInInspector] public Controller2D controller2D;
     [HideInInspector] public CircleCollider2D ballCollider;
+
+    public TrailRenderer _trail;
     
     public UnityEvent OnBallMissed;
 
     private int HitsLeft;
 
     public AudioObject audioHit;
+    public AudioObject audioDash;
+    public AudioObject audioJump;
 
     public void setHits(int _hitsLeft)
     {
@@ -70,6 +74,7 @@ public class Player : MonoBehaviour
         ballCollider = GetComponent<CircleCollider2D>();
         inputs = GetComponent<PlayerInputTransformer>();
         inputs.Reset();
+        _trail = GetComponent<TrailRenderer>();
     }
 
     private void Awake()
@@ -97,6 +102,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        _trail.time = Mathf.Max(0, _trail.time - Time.deltaTime);
         State.Update();
     }
 
@@ -128,6 +134,7 @@ public class Player : MonoBehaviour
                 hit.Player = this;
                 hit.Distance = 1 - Mathf.Abs(collision.distance) / ballCollider.radius;
                 game.Ball.OnBallTouched.Invoke(hit);
+                game.Ball.setTrail(1 - hit.Distance);
                 AudioManager.PlaySound(audioHit);
             }
 

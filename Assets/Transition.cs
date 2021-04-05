@@ -11,7 +11,6 @@ public class Transition : MonoBehaviour
 
     private Animator _animator;
     private Action _callback = null;
-    private float _lastProgress = 0;
     private float _endTimestamp = 0;
     public AudioObject TransitonAudio;
     

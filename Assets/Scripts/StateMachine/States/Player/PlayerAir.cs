@@ -55,6 +55,8 @@ public class PlayerAir : State<Player>
         
         if (Handler.inputs.JumpPressed() && Handler.currentDashes > 0)
         {
+            Handler._trail.time = .5f;
+            AudioManager.PlaySound(Handler.audioDash);
             Handler.currentDashes--;
             Handler.State.SetState(Handler.PlayerDash);
         }

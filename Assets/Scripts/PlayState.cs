@@ -9,6 +9,9 @@ public class PlayState
     public static bool isRightMachine = true;
     public static int firstTo = 5;
 
+    public static bool isLeftHard = false;
+    public static bool isRightHard = false;
+
     public static string logFile = Application.persistentDataPath + Path.DirectorySeparatorChar + "game_logs.csv";
 
     public Game Game;
