@@ -304,7 +304,7 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(3f);
         LeftCelebration.Out(true);
         RightCelebration.Out(true);
-        Transition.Play(() => SceneManager.LoadScene(0));
+        Transition.Play(() => SceneManager.LoadScene(1));
     }
 
     private void WriteResults(bool leftWon)
